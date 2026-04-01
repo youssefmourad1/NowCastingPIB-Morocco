@@ -1,0 +1,88 @@
+# Metadata for every series entering the DFM panel.
+# transform: yoy_log_diff | none
+# frequency: monthly | quarterly
+# quarterly_assignment: last_month_of_quarter  (only for quarterly series)
+# include_in_model: false means the series is processed but NOT included in the DFM
+#   until the data definition is confirmed externally.
+
+series:
+  consommation_ciment:
+    description: "Consommation mensuelle de ciment"
+    source: "APC / DEPF"
+    unit: "tonnes (post-correction)"
+    frequency: monthly
+    publication_lag_days: 35
+    transform: yoy_log_diff
+    include_in_model: true
+
+  credits_equipement:
+    description: "Encours de crédits d'équipement"
+    source: "Bank Al-Maghrib (BKAM)"
+    unit: "MDH"
+    frequency: monthly
+    publication_lag_days: 35
+    transform: yoy_log_diff
+    include_in_model: true
+
+  credits_immobilier:
+    description: "Encours de crédits immobiliers"
+    source: "Bank Al-Maghrib (BKAM)"
+    unit: "MDH"
+    frequency: monthly
+    publication_lag_days: 35
+    transform: yoy_log_diff
+    include_in_model: true
+
+  va_construction:
+    description: "Valeur Ajoutée secteur construction — variable cible du nowcast"
+    source: "HCP (Comptes Nationaux Trimestriels)"
+    unit: "MDH prix courants"
+    frequency: quarterly
+    publication_lag_days: 90
+    transform: none                          # DFM handles mixed-frequency natively
+    quarterly_assignment: last_month_of_quarter
+    include_in_model: true
+    is_target: true
+
+  ipai:
+    description: "Indice de Production des Activités Industrielles"
+    source: "HCP"
+    unit: "Indice base 100"
+    frequency: quarterly
+    publication_lag_days: 60
+    transform: none
+    quarterly_assignment: last_month_of_quarter
+    include_in_model: true
+
+  lafarge_index:
+    description: "Indice sectoriel sociétés de construction (LafargeHolcim Maroc)"
+    source: "Bourse de Casablanca"
+    unit: "MAD/action"
+    frequency: monthly
+    publication_lag_days: 0
+    transform: yoy_log_diff
+    raw_format: string_with_commas
+    include_in_model: true
+
+  investissement_etat:
+    description: "Investissement de l'État / exécution budgétaire"
+    source: "MEF / TGR"
+    unit: "MDH"
+    frequency: monthly
+    publication_lag_days: 20
+    transform: yoy_log_diff
+    include_in_model: false                  # Excluded until definition confirmed with TGR
+    exclusion_reason: >
+      Serie atypique avec valeurs très négatives en janvier de chaque année.
+      Définition ambiguë (cumul YTD vs. variation mensuelle vs. solde budgétaire).
+      À confirmer avec TGR/MEF avant inclusion dans le DFM.
+
+  creation_emploi:
+    description: "Créations nettes d'emplois dans le secteur BTP"
+    source: "HCP (enquêtes emploi)"
+    unit: "Nombre"
+    frequency: quarterly
+    publication_lag_days: 90
+    transform: none
+    quarterly_assignment: last_month_of_quarter
+    include_in_model: true

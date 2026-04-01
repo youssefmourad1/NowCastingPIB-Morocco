@@ -1,0 +1,42 @@
+# DFM hyperparameters and estimation settings.
+# Phase 1: these values define the intended configuration.
+# Phase 2: DFM estimation code reads these via Settings.model.
+
+dfm:
+  n_factors: 2                    # Starting point; select empirically (Phase 2)
+  # Factor interpretation:
+  #   Factor 1 — Cycle BTP / Demande construction (ciment, crédits immo, LafargeHolcim, emploi)
+  #   Factor 2 — Investissement public / Budget équipement (crédits équipement, marchés publics)
+  n_lags: 1
+  max_iterations: 500
+  tolerance: 1.0e-6
+  mixed_frequency:
+    quarterly_series:
+      - va_construction
+      - ipai
+      - creation_emploi
+    aggregation: sum              # VA^q_t = VA^m_t + VA^m_{t-1} + VA^m_{t-2}
+
+sample:
+  in_sample_start: "2010-01"     # Exclude 2007-2009 ramp-up for initial estimation
+  in_sample_end: "2019-12"       # Pre-COVID baseline
+  full_sample_start: "2007-01"
+  full_sample_end: "2026-02"
+
+backtest:
+  origin_start: "2015-01"
+  origin_end: "2024-12"
+  update_days: [7, 21]           # Bi-monthly nowcast update schedule
+  rolling_window_years: 12       # Re-estimate DFM on last 12 years at each origin
+
+evaluation:
+  benchmarks:
+    - random_walk
+    - ar1
+    - bridge_ols               # OLS of VA_BTP on ciment + LafargeHolcim
+  metrics:
+    - rmsfe
+    - mafe
+    - bias
+    - theil_u
+    - diebold_mariano

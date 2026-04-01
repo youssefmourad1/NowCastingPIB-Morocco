@@ -1,0 +1,61 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lamiaty"
+version = "0.1.0"
+description = "Nowcasting de la Valeur Ajoutée BTP au Maroc — Dynamic Factor Model"
+requires-python = ">=3.10"
+readme = "README.md"
+license = {text = "MIT"}
+
+dependencies = [
+    "pandas>=2.1",
+    "numpy>=1.26",
+    "statsmodels>=0.14",
+    "openpyxl>=3.1",
+    "pyarrow>=14.0",
+    "pyyaml>=6.0",
+    "matplotlib>=3.8",
+    "plotly>=5.17",
+    "seaborn>=0.13",
+    "scipy>=1.11",
+    "streamlit>=1.32",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+    "pytest-cov>=4.1",
+    "ipykernel>=6.25",
+    "jupyterlab>=4.0",
+    "black>=23.9",
+    "isort>=5.12",
+    "ruff>=0.1",
+    "mypy>=1.6",
+    "nbformat>=5.9",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v"
+
+[tool.black]
+line-length = 88
+target-version = ["py311"]
+
+[tool.isort]
+profile = "black"
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+
+[tool.mypy]
+python_version = "3.11"
+strict = false
+ignore_missing_imports = true

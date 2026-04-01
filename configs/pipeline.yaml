@@ -1,0 +1,25 @@
+paths:
+  raw_dir: data/raw
+  interim_dir: data/interim
+  processed_dir: data/processed
+  vintages_dir: data/vintages
+  external_dir: data/external
+
+sources:
+  # Primary data source — all model variables come from this file.
+  base_btp: base_BTP_modifiee.xlsx
+  # Auxiliary files below are available for standalone exploration but
+  # are NOT used by the main DFM pipeline (run_pipeline).
+  moroccan_shares_csv: "Moroccan All Shares Historical Data.csv"
+  masi_json_files:
+    - extract.json
+    - extract2.json
+  extract3_csv: extract3.csv
+
+pipeline:
+  run_corrections: true
+  run_transforms: true
+  save_interim: true
+  output_format: parquet
+  panel_start: "2007-01"
+  panel_end: "2026-02"

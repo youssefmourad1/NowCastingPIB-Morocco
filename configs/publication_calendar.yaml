@@ -1,0 +1,48 @@
+# Reconstructed publication calendar for pseudo-real-time backtesting (Phase 3).
+# lag_days: typical number of calendar days after the reference period end
+#           before the data becomes publicly available.
+# Used by backtest/vintage_builder.py to reconstruct as-of datasets.
+
+series:
+  investissement_etat:
+    lag_days: 20
+    availability: "J+M+20"       # Available ~20 days after end of reference month M
+    notes: "TGR budget execution — published in monthly bulletin"
+
+  lafarge_index:
+    lag_days: 0
+    availability: "real-time"
+    notes: "Stock price — available daily on Casablanca Stock Exchange"
+
+  consommation_ciment:
+    lag_days: 35
+    availability: "J+M+35"
+    notes: "APC monthly cement statistics"
+
+  credits_equipement:
+    lag_days: 35
+    availability: "J+M+35"
+    notes: "BKAM monthly monetary statistics bulletin"
+
+  credits_immobilier:
+    lag_days: 35
+    availability: "J+M+35"
+    notes: "BKAM monthly monetary statistics bulletin"
+
+  ipai:
+    lag_days: 60
+    availability: "J+fin_trimestre+60"
+    frequency: quarterly
+    notes: "HCP — released ~60 days after quarter end"
+
+  va_construction:
+    lag_days: 90
+    availability: "J+fin_trimestre+90"
+    frequency: quarterly
+    notes: "HCP Comptes Nationaux Trimestriels — 45-90 day lag"
+
+  creation_emploi:
+    lag_days: 90
+    availability: "J+fin_trimestre+90"
+    frequency: quarterly
+    notes: "HCP employment surveys — released with quarterly accounts"

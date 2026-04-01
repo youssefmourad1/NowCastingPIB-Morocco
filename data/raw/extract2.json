@@ -1,0 +1,3534 @@
+{
+    "jsonapi": {
+        "version": "1.0",
+        "meta": {
+            "links": {
+                "self": {
+                    "href": "http:\/\/jsonapi.org\/format\/1.0\/"
+                }
+            }
+        }
+    },
+    "data": [
+        {
+            "type": "bourse_data--index_history",
+            "id": "0dfd3535-25a6-4ab2-8cb8-a6255017e391",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/0dfd3535-25a6-4ab2-8cb8-a6255017e391"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 11343560,
+                "field_index_value": "26603.5516000000",
+                "field_seance_date": "2025-02-27"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "48655344-44a7-4098-a089-f4663baa3a37",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/48655344-44a7-4098-a089-f4663baa3a37"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 11305846,
+                "field_index_value": "26824.5336000000",
+                "field_seance_date": "2025-02-26"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "15ef63c2-02b6-4f4e-bd5a-5cdbb4e4c8da",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/15ef63c2-02b6-4f4e-bd5a-5cdbb4e4c8da"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 11261531,
+                "field_index_value": "26628.9341000000",
+                "field_seance_date": "2025-02-25"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "7d7c6189-1a88-42b8-87f2-d736fdb89ade",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/7d7c6189-1a88-42b8-87f2-d736fdb89ade"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 11225198,
+                "field_index_value": "26885.9269000000",
+                "field_seance_date": "2025-02-24"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "dfcdbe81-a2d7-496f-a03b-3ce4404d6b42",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/dfcdbe81-a2d7-496f-a03b-3ce4404d6b42"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 11180219,
+                "field_index_value": "26824.8138000000",
+                "field_seance_date": "2025-02-21"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "fdccee89-2675-4aa4-a81e-3e94d6950e5d",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/fdccee89-2675-4aa4-a81e-3e94d6950e5d"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 11133716,
+                "field_index_value": "26744.0191000000",
+                "field_seance_date": "2025-02-20"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "f10ecb26-f4f2-4381-b8a1-9ea3f51dfca5",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/f10ecb26-f4f2-4381-b8a1-9ea3f51dfca5"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 11089370,
+                "field_index_value": "26374.7145000000",
+                "field_seance_date": "2025-02-19"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "b684ed59-0851-4af7-8e64-56f21c057ed3",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/b684ed59-0851-4af7-8e64-56f21c057ed3"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 11050777,
+                "field_index_value": "26103.7713000000",
+                "field_seance_date": "2025-02-18"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "75baeac1-c53e-459b-b810-4585d759df05",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/75baeac1-c53e-459b-b810-4585d759df05"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 11015887,
+                "field_index_value": "25989.8006000000",
+                "field_seance_date": "2025-02-17"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "684c35ec-bcd2-4e22-ba24-0c6e91ad736e",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/684c35ec-bcd2-4e22-ba24-0c6e91ad736e"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 10985202,
+                "field_index_value": "25414.0189000000",
+                "field_seance_date": "2025-02-14"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "ce1562db-926e-42e5-9655-1763232c90c1",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/ce1562db-926e-42e5-9655-1763232c90c1"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 10956112,
+                "field_index_value": "25485.4285000000",
+                "field_seance_date": "2025-02-13"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "16181bdb-2006-457d-89ea-cf6075e06afe",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/16181bdb-2006-457d-89ea-cf6075e06afe"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 10926190,
+                "field_index_value": "25536.3500000000",
+                "field_seance_date": "2025-02-12"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "0e5c8081-f605-46bb-96ca-4763badacdf9",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/0e5c8081-f605-46bb-96ca-4763badacdf9"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 10895274,
+                "field_index_value": "25379.4953000000",
+                "field_seance_date": "2025-02-11"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "d84c8138-743e-4423-a7e2-21265d578861",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/d84c8138-743e-4423-a7e2-21265d578861"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 10866886,
+                "field_index_value": "25520.3595000000",
+                "field_seance_date": "2025-02-10"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "af12def3-2789-42c8-ba88-90bb1d3adb03",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/af12def3-2789-42c8-ba88-90bb1d3adb03"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 10842553,
+                "field_index_value": "25547.4787000000",
+                "field_seance_date": "2025-02-07"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "65a507d0-689d-4156-bf0a-b2061f0087ec",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/65a507d0-689d-4156-bf0a-b2061f0087ec"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 10810879,
+                "field_index_value": "25645.1541000000",
+                "field_seance_date": "2025-02-06"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "3abf6398-ed58-4b39-996b-f18b3e64eda4",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/3abf6398-ed58-4b39-996b-f18b3e64eda4"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 10782639,
+                "field_index_value": "25576.8231000000",
+                "field_seance_date": "2025-02-05"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "ff837968-c2db-4f2d-8898-3190d6d36076",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/ff837968-c2db-4f2d-8898-3190d6d36076"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 10759179,
+                "field_index_value": "25663.6352000000",
+                "field_seance_date": "2025-02-04"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "9236a98f-0f36-4c37-bc78-4695dbb36143",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/9236a98f-0f36-4c37-bc78-4695dbb36143"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 10729083,
+                "field_index_value": "25519.1613000000",
+                "field_seance_date": "2025-02-03"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "72dbf6a4-8032-41ca-b368-c72d1833c1d3",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/72dbf6a4-8032-41ca-b368-c72d1833c1d3"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 10704219,
+                "field_index_value": "25416.9451000000",
+                "field_seance_date": "2025-01-31"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "76828455-b19a-4910-9361-3b9af63c0ac3",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/76828455-b19a-4910-9361-3b9af63c0ac3"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 10667136,
+                "field_index_value": "25483.1270000000",
+                "field_seance_date": "2025-01-30"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "eb2c4e40-9caa-4492-a694-3f31a7ba2597",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/eb2c4e40-9caa-4492-a694-3f31a7ba2597"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 10629934,
+                "field_index_value": "25339.7370000000",
+                "field_seance_date": "2025-01-29"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "4c5f9981-a4e5-4692-a3ca-4c97020c593b",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/4c5f9981-a4e5-4692-a3ca-4c97020c593b"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 10598644,
+                "field_index_value": "25174.1660000000",
+                "field_seance_date": "2025-01-28"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "d83d6f8f-0f7e-475e-8eed-a7a78ef8c6e7",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/d83d6f8f-0f7e-475e-8eed-a7a78ef8c6e7"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 10576635,
+                "field_index_value": "25241.0348000000",
+                "field_seance_date": "2025-01-27"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "5af4074d-d41f-4d13-885b-382177966fb7",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/5af4074d-d41f-4d13-885b-382177966fb7"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 10553633,
+                "field_index_value": "25218.3268000000",
+                "field_seance_date": "2025-01-24"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "57ebf891-87d1-4cc3-9c3e-56776b66dd2a",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/57ebf891-87d1-4cc3-9c3e-56776b66dd2a"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 10524224,
+                "field_index_value": "25173.8140000000",
+                "field_seance_date": "2025-01-23"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "4a1c3c10-c32b-498c-8e2b-559ac9b14f79",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/4a1c3c10-c32b-498c-8e2b-559ac9b14f79"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 10496031,
+                "field_index_value": "24879.1127000000",
+                "field_seance_date": "2025-01-22"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "f30b7606-b701-438b-9bc0-178d91f9f517",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/f30b7606-b701-438b-9bc0-178d91f9f517"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 10460593,
+                "field_index_value": "25126.7295000000",
+                "field_seance_date": "2025-01-21"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "b47384d4-bcb5-45c4-a8d4-09353da3907d",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/b47384d4-bcb5-45c4-a8d4-09353da3907d"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 10421447,
+                "field_index_value": "25285.0707000000",
+                "field_seance_date": "2025-01-20"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "246d18b4-8a0f-4b1a-a5d4-d12c2bcaab49",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/246d18b4-8a0f-4b1a-a5d4-d12c2bcaab49"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 10377026,
+                "field_index_value": "25389.3094000000",
+                "field_seance_date": "2025-01-17"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "dc88e6cc-ea98-48e2-bb0d-efac64d33d12",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/dc88e6cc-ea98-48e2-bb0d-efac64d33d12"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 10337304,
+                "field_index_value": "25563.4578000000",
+                "field_seance_date": "2025-01-16"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "3f10115f-efba-4a9f-8e9a-4af1baca619a",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/3f10115f-efba-4a9f-8e9a-4af1baca619a"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 10296853,
+                "field_index_value": "25538.5650000000",
+                "field_seance_date": "2025-01-15"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "a64a2aaa-cf39-4d12-af30-6887e479cd1e",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/a64a2aaa-cf39-4d12-af30-6887e479cd1e"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 10264505,
+                "field_index_value": "25566.3668000000",
+                "field_seance_date": "2025-01-13"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "ea545423-e7e7-44d4-8713-8badba679599",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/ea545423-e7e7-44d4-8713-8badba679599"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 10237513,
+                "field_index_value": "25422.1689000000",
+                "field_seance_date": "2025-01-10"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "f1aeb1d9-abd1-4001-92e1-778b7573958a",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/f1aeb1d9-abd1-4001-92e1-778b7573958a"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 10189160,
+                "field_index_value": "25478.5233000000",
+                "field_seance_date": "2025-01-09"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "9374f4a8-feed-4d73-b765-0573d5000fc4",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/9374f4a8-feed-4d73-b765-0573d5000fc4"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 10130399,
+                "field_index_value": "25507.9909000000",
+                "field_seance_date": "2025-01-08"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "ba05415b-5eb4-47f3-aa53-f5aa6e783da1",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/ba05415b-5eb4-47f3-aa53-f5aa6e783da1"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 10078270,
+                "field_index_value": "25366.3604000000",
+                "field_seance_date": "2025-01-07"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "2e7a5caa-7d22-41bf-a2d2-c511e5dceb01",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/2e7a5caa-7d22-41bf-a2d2-c511e5dceb01"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 10044061,
+                "field_index_value": "25367.6288000000",
+                "field_seance_date": "2025-01-06"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "95686002-1d2d-4826-9f61-4fd02368ef51",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/95686002-1d2d-4826-9f61-4fd02368ef51"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 9996436,
+                "field_index_value": "25370.6213000000",
+                "field_seance_date": "2025-01-03"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "98787c92-c801-49ac-a73e-8e6242e36061",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/98787c92-c801-49ac-a73e-8e6242e36061"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 9935780,
+                "field_index_value": "24511.5229000000",
+                "field_seance_date": "2025-01-02"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "ddc67136-fd2a-49af-bb2e-9a3603c072f1",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/ddc67136-fd2a-49af-bb2e-9a3603c072f1"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 9888168,
+                "field_index_value": "23796.9902000000",
+                "field_seance_date": "2024-12-31"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "d8cfb21c-85fd-4efd-a35d-30693722c913",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/d8cfb21c-85fd-4efd-a35d-30693722c913"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 9850666,
+                "field_index_value": "23760.5215000000",
+                "field_seance_date": "2024-12-30"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "8446ebb7-8c25-4550-a3c7-ab85cc3b3a04",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/8446ebb7-8c25-4550-a3c7-ab85cc3b3a04"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 9826213,
+                "field_index_value": "23839.0888000000",
+                "field_seance_date": "2024-12-27"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "6a63fc03-a763-45bc-95ef-539d8c0200e9",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/6a63fc03-a763-45bc-95ef-539d8c0200e9"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 9801292,
+                "field_index_value": "23769.0613000000",
+                "field_seance_date": "2024-12-26"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "46b81ba9-797f-49b3-b666-552553a801dd",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/46b81ba9-797f-49b3-b666-552553a801dd"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 9777254,
+                "field_index_value": "23496.4895000000",
+                "field_seance_date": "2024-12-25"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "c2b0c9da-725d-452a-b105-3f5f45a6602c",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/c2b0c9da-725d-452a-b105-3f5f45a6602c"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 9757821,
+                "field_index_value": "23572.2558000000",
+                "field_seance_date": "2024-12-24"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "643ac8d5-756b-4725-b534-8f00a8e70506",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/643ac8d5-756b-4725-b534-8f00a8e70506"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 9732367,
+                "field_index_value": "23698.5139000000",
+                "field_seance_date": "2024-12-23"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "5a999a5c-39bc-4a67-96bf-2588dd313999",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/5a999a5c-39bc-4a67-96bf-2588dd313999"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 9705167,
+                "field_index_value": "23653.6190000000",
+                "field_seance_date": "2024-12-20"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "1e8f3224-6df8-4612-8a1e-5a62c39e952a",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/1e8f3224-6df8-4612-8a1e-5a62c39e952a"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 9672994,
+                "field_index_value": "23721.7329000000",
+                "field_seance_date": "2024-12-19"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "fc8f12de-678e-4653-b890-f81d3bdaba14",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/fc8f12de-678e-4653-b890-f81d3bdaba14"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 9625036,
+                "field_index_value": "23939.4679000000",
+                "field_seance_date": "2024-12-18"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "67c7a3f3-1dd8-418d-ab8c-00cd781156e4",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/67c7a3f3-1dd8-418d-ab8c-00cd781156e4"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 9603544,
+                "field_index_value": "23806.5401000000",
+                "field_seance_date": "2024-12-17"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "f2003a5f-60dd-495d-b9b3-e0ec52e45fbc",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/f2003a5f-60dd-495d-b9b3-e0ec52e45fbc"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 9574335,
+                "field_index_value": "23763.2351000000",
+                "field_seance_date": "2024-12-16"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "0b25e8da-1035-4a62-8db5-c3d9d60cf8b3",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/0b25e8da-1035-4a62-8db5-c3d9d60cf8b3"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 9555295,
+                "field_index_value": "23678.3525000000",
+                "field_seance_date": "2024-12-13"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "e6ab6c88-4a4e-4958-9882-62c59c7ab077",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/e6ab6c88-4a4e-4958-9882-62c59c7ab077"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 9536210,
+                "field_index_value": "23694.3421000000",
+                "field_seance_date": "2024-12-12"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "c36bd520-c0ba-4cb4-9ebb-e3133778b6ae",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/c36bd520-c0ba-4cb4-9ebb-e3133778b6ae"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 9518641,
+                "field_index_value": "23905.5754000000",
+                "field_seance_date": "2024-12-11"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "86c9fbd6-aebf-4a67-94e8-926afcec1179",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/86c9fbd6-aebf-4a67-94e8-926afcec1179"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 9495762,
+                "field_index_value": "23939.0243000000",
+                "field_seance_date": "2024-12-10"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "18384d2d-799b-4d07-803a-785b0a27f40e",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/18384d2d-799b-4d07-803a-785b0a27f40e"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 9471175,
+                "field_index_value": "24016.2090000000",
+                "field_seance_date": "2024-12-09"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "4d6acc16-3d0d-4684-933b-9a76ab7a1369",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/4d6acc16-3d0d-4684-933b-9a76ab7a1369"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 9452549,
+                "field_index_value": "23979.7677000000",
+                "field_seance_date": "2024-12-06"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "4fc2d76d-a613-4ecd-8a4d-9f4c38497f88",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/4fc2d76d-a613-4ecd-8a4d-9f4c38497f88"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 9429150,
+                "field_index_value": "23902.5961000000",
+                "field_seance_date": "2024-12-05"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "aa459c2f-4e6a-44e3-b1a0-00f9d948043d",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/aa459c2f-4e6a-44e3-b1a0-00f9d948043d"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 9406269,
+                "field_index_value": "24001.5505000000",
+                "field_seance_date": "2024-12-04"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "2c38d5ba-0082-451d-9490-993b11a8aca2",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/2c38d5ba-0082-451d-9490-993b11a8aca2"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 9388877,
+                "field_index_value": "24019.6996000000",
+                "field_seance_date": "2024-12-03"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "d3082172-6537-4a38-bb8c-8d00d3234d53",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/d3082172-6537-4a38-bb8c-8d00d3234d53"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 9370600,
+                "field_index_value": "23760.5930000000",
+                "field_seance_date": "2024-12-02"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "0e73d21c-8922-4555-94a0-1f3237013f81",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/0e73d21c-8922-4555-94a0-1f3237013f81"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 9342976,
+                "field_index_value": "24110.7285000000",
+                "field_seance_date": "2024-11-29"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "484c24f9-f779-485e-81f5-68c8b7607e96",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/484c24f9-f779-485e-81f5-68c8b7607e96"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 9308930,
+                "field_index_value": "24303.3355000000",
+                "field_seance_date": "2024-11-28"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "cd28cda1-c7b9-49c9-b4bb-5f082ed8faa2",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/cd28cda1-c7b9-49c9-b4bb-5f082ed8faa2"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 9288725,
+                "field_index_value": "24302.6157000000",
+                "field_seance_date": "2024-11-27"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "07fa8002-954f-426e-8d02-818d1feb1340",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/07fa8002-954f-426e-8d02-818d1feb1340"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 9260148,
+                "field_index_value": "24077.5729000000",
+                "field_seance_date": "2024-11-26"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "ff5d3546-8461-4b98-a6c4-d4efb35d3bf2",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/ff5d3546-8461-4b98-a6c4-d4efb35d3bf2"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 9238264,
+                "field_index_value": "23996.8508000000",
+                "field_seance_date": "2024-11-25"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "b71fda1c-635d-4d33-a0ed-1893390fc7ba",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/b71fda1c-635d-4d33-a0ed-1893390fc7ba"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 9213070,
+                "field_index_value": "24217.7795000000",
+                "field_seance_date": "2024-11-22"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "2f3e6f62-f137-4ddf-bccf-6c0e7f807e3d",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/2f3e6f62-f137-4ddf-bccf-6c0e7f807e3d"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 9189634,
+                "field_index_value": "24134.4326000000",
+                "field_seance_date": "2024-11-21"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "97a95def-67d6-4dc0-9f6a-6b55fa0b03b6",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/97a95def-67d6-4dc0-9f6a-6b55fa0b03b6"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 9158100,
+                "field_index_value": "24411.6138000000",
+                "field_seance_date": "2024-11-20"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "edf81a96-9ed6-46b4-98e1-53d94d91d843",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/edf81a96-9ed6-46b4-98e1-53d94d91d843"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 9129320,
+                "field_index_value": "24478.1077000000",
+                "field_seance_date": "2024-11-19"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "3331a660-192c-429f-9f2d-48834f8f7211",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/3331a660-192c-429f-9f2d-48834f8f7211"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 9094253,
+                "field_index_value": "24207.9675000000",
+                "field_seance_date": "2024-11-15"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "ef6bf784-bad4-4d09-a60f-036ad81fe155",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/ef6bf784-bad4-4d09-a60f-036ad81fe155"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 9064070,
+                "field_index_value": "23764.6295000000",
+                "field_seance_date": "2024-11-14"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "4fb0dbab-663e-4ad3-8468-40739744a19e",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/4fb0dbab-663e-4ad3-8468-40739744a19e"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 9041586,
+                "field_index_value": "23261.3889000000",
+                "field_seance_date": "2024-11-13"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "2e175aad-325c-4a61-aca7-c0fdd108905c",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/2e175aad-325c-4a61-aca7-c0fdd108905c"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 9018780,
+                "field_index_value": "23165.1888000000",
+                "field_seance_date": "2024-11-12"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "4bc884aa-ece4-41c9-bf31-e72551c1c8ba",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/4bc884aa-ece4-41c9-bf31-e72551c1c8ba"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 8991542,
+                "field_index_value": "23098.0090000000",
+                "field_seance_date": "2024-11-11"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "76c954dc-b096-42cb-ae1b-8f38192e9fe5",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/76c954dc-b096-42cb-ae1b-8f38192e9fe5"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 8956775,
+                "field_index_value": "23206.9424000000",
+                "field_seance_date": "2024-11-08"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "c68187a2-6079-4b31-aef3-7f6921f5dfa5",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/c68187a2-6079-4b31-aef3-7f6921f5dfa5"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 8925867,
+                "field_index_value": "22922.7262000000",
+                "field_seance_date": "2024-11-07"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "24baedd8-23d8-4e58-99f9-2972adeec9e4",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/24baedd8-23d8-4e58-99f9-2972adeec9e4"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 8903221,
+                "field_index_value": "22667.1540000000",
+                "field_seance_date": "2024-11-05"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "9eb6f2d1-124d-4bdf-b9ab-09b630c0eb5e",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/9eb6f2d1-124d-4bdf-b9ab-09b630c0eb5e"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 8885122,
+                "field_index_value": "22593.4304000000",
+                "field_seance_date": "2024-11-04"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "82afa701-3345-4da9-8307-fb5f005a8b8c",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/82afa701-3345-4da9-8307-fb5f005a8b8c"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 8866842,
+                "field_index_value": "22356.0645000000",
+                "field_seance_date": "2024-11-01"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "2fbb32ee-2bd5-4903-9663-635e425fdf1a",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/2fbb32ee-2bd5-4903-9663-635e425fdf1a"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 8846678,
+                "field_index_value": "22219.1622000000",
+                "field_seance_date": "2024-10-31"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "a152849e-8e69-44e4-9817-644fc844ca9b",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/a152849e-8e69-44e4-9817-644fc844ca9b"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 8824825,
+                "field_index_value": "22105.4156000000",
+                "field_seance_date": "2024-10-30"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "096966cd-3607-4dba-a4c9-a82cb0848337",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/096966cd-3607-4dba-a4c9-a82cb0848337"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 8808844,
+                "field_index_value": "22344.7170000000",
+                "field_seance_date": "2024-10-29"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "84a33a8b-e0b8-4830-afd1-f6323c2a0e99",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/84a33a8b-e0b8-4830-afd1-f6323c2a0e99"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 8788422,
+                "field_index_value": "22025.0125000000",
+                "field_seance_date": "2024-10-28"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "49fbe2cb-4abe-4bd7-839a-12c7926d1b7d",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/49fbe2cb-4abe-4bd7-839a-12c7926d1b7d"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 8763252,
+                "field_index_value": "21813.6118000000",
+                "field_seance_date": "2024-10-25"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "173526bd-89a0-4506-9755-27f4721b6d2b",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/173526bd-89a0-4506-9755-27f4721b6d2b"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 8747050,
+                "field_index_value": "21677.3438000000",
+                "field_seance_date": "2024-10-24"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "e2fab3e6-70c1-4c25-a300-d4fe54ed4ad1",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/e2fab3e6-70c1-4c25-a300-d4fe54ed4ad1"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 8729061,
+                "field_index_value": "21709.1343000000",
+                "field_seance_date": "2024-10-23"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "efdb2be8-bf33-47f7-a8f0-5fe9540e8cd0",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/efdb2be8-bf33-47f7-a8f0-5fe9540e8cd0"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 8709170,
+                "field_index_value": "21662.3305000000",
+                "field_seance_date": "2024-10-22"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "6f030b8e-0469-4af3-9955-b45177b114a2",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/6f030b8e-0469-4af3-9955-b45177b114a2"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 8688959,
+                "field_index_value": "21458.6726000000",
+                "field_seance_date": "2024-10-21"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "d29823a9-424a-4fa0-bf37-e06b59a4a9c4",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/d29823a9-424a-4fa0-bf37-e06b59a4a9c4"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 8672187,
+                "field_index_value": "21432.4196000000",
+                "field_seance_date": "2024-10-18"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "069e5762-401e-4a88-86d3-e9b816f2fe0b",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/069e5762-401e-4a88-86d3-e9b816f2fe0b"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 8650738,
+                "field_index_value": "21331.8709000000",
+                "field_seance_date": "2024-10-17"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "1d718b18-d34a-4952-9ae0-19b8f1317694",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/1d718b18-d34a-4952-9ae0-19b8f1317694"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 8627096,
+                "field_index_value": "20722.9904000000",
+                "field_seance_date": "2024-10-16"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "6d4a11c0-b225-4aa7-aeca-20ef1097218f",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/6d4a11c0-b225-4aa7-aeca-20ef1097218f"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 8603772,
+                "field_index_value": "20940.8973000000",
+                "field_seance_date": "2024-10-15"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "53107f38-dae9-43fa-a43a-64c1cce3c381",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/53107f38-dae9-43fa-a43a-64c1cce3c381"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 8585198,
+                "field_index_value": "21226.4273000000",
+                "field_seance_date": "2024-10-14"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "51d01c74-ff44-497c-a95a-1b3900d97486",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/51d01c74-ff44-497c-a95a-1b3900d97486"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 8567166,
+                "field_index_value": "21381.2128000000",
+                "field_seance_date": "2024-10-11"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "8d7cc0cc-03b1-4db2-9f45-123ce9dfd288",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/8d7cc0cc-03b1-4db2-9f45-123ce9dfd288"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 8551516,
+                "field_index_value": "21418.3504000000",
+                "field_seance_date": "2024-10-10"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "03dedbaa-1b51-4e8f-8f5b-6b15296bd424",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/03dedbaa-1b51-4e8f-8f5b-6b15296bd424"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 8536002,
+                "field_index_value": "21420.6172000000",
+                "field_seance_date": "2024-10-09"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "71407f96-c9e7-4006-830b-ac04b4f688f8",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/71407f96-c9e7-4006-830b-ac04b4f688f8"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 8518270,
+                "field_index_value": "21356.0724000000",
+                "field_seance_date": "2024-10-08"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "1f554650-4839-4a13-b478-b30460f806b4",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/1f554650-4839-4a13-b478-b30460f806b4"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 8488939,
+                "field_index_value": "21667.8173000000",
+                "field_seance_date": "2024-10-07"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "b26bfea6-abc4-4960-8f0e-5e84d1df4bc5",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/b26bfea6-abc4-4960-8f0e-5e84d1df4bc5"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 8466572,
+                "field_index_value": "21633.7061000000",
+                "field_seance_date": "2024-10-04"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "8f1e44ce-a162-4ce4-884a-8fc093501c25",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/8f1e44ce-a162-4ce4-884a-8fc093501c25"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 8443337,
+                "field_index_value": "21378.8298000000",
+                "field_seance_date": "2024-10-03"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "c84fd19d-8e68-4fcd-84b2-813d60fcf5f8",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/c84fd19d-8e68-4fcd-84b2-813d60fcf5f8"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 8424055,
+                "field_index_value": "21106.4155000000",
+                "field_seance_date": "2024-10-02"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "33276ae4-93c4-4587-91af-6f8165ec1918",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/33276ae4-93c4-4587-91af-6f8165ec1918"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 8387895,
+                "field_index_value": "21219.5505000000",
+                "field_seance_date": "2024-10-01"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "4a2574d1-0057-423b-891b-da05deee61f2",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/4a2574d1-0057-423b-891b-da05deee61f2"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 8357254,
+                "field_index_value": "21814.4195000000",
+                "field_seance_date": "2024-09-30"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "eac33217-4dac-443c-a58f-0114039cea56",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/eac33217-4dac-443c-a58f-0114039cea56"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 8324491,
+                "field_index_value": "21806.5558000000",
+                "field_seance_date": "2024-09-27"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "01d2fe9b-fb95-413e-90dc-dbd17f475d15",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/01d2fe9b-fb95-413e-90dc-dbd17f475d15"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 8292950,
+                "field_index_value": "21788.1786000000",
+                "field_seance_date": "2024-09-26"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "491c3d3e-48e0-49d0-87ee-30f56094ae4b",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/491c3d3e-48e0-49d0-87ee-30f56094ae4b"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 8265480,
+                "field_index_value": "21501.2568000000",
+                "field_seance_date": "2024-09-25"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "030125e9-334b-42ea-a0b3-13d14570d497",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/030125e9-334b-42ea-a0b3-13d14570d497"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 8243830,
+                "field_index_value": "21633.7504000000",
+                "field_seance_date": "2024-09-24"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "25d2c3ed-1b8f-4db8-b73a-6a801e3e8959",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/25d2c3ed-1b8f-4db8-b73a-6a801e3e8959"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 8213168,
+                "field_index_value": "21640.1642000000",
+                "field_seance_date": "2024-09-23"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "93bdbc1c-c86c-404d-8128-1c72b1bd6a99",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/93bdbc1c-c86c-404d-8128-1c72b1bd6a99"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 8192673,
+                "field_index_value": "21812.4864000000",
+                "field_seance_date": "2024-09-20"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "74c11f10-7985-4aca-bef6-d294bddd0b86",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/74c11f10-7985-4aca-bef6-d294bddd0b86"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 8168689,
+                "field_index_value": "21684.6270000000",
+                "field_seance_date": "2024-09-19"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "5165eb2a-b35f-4f88-81b7-b5d97863d1e6",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/5165eb2a-b35f-4f88-81b7-b5d97863d1e6"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 8139943,
+                "field_index_value": "21589.0507000000",
+                "field_seance_date": "2024-09-18"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "1cb3f8a5-f905-402a-9545-638aa3d29a80",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/1cb3f8a5-f905-402a-9545-638aa3d29a80"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 8105548,
+                "field_index_value": "21426.6740000000",
+                "field_seance_date": "2024-09-13"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "986966e4-a933-45b8-b551-a43f06cb78c6",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/986966e4-a933-45b8-b551-a43f06cb78c6"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 8084994,
+                "field_index_value": "20880.0891000000",
+                "field_seance_date": "2024-09-12"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "7f781ace-c389-438e-b6f4-157c725dc8c4",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/7f781ace-c389-438e-b6f4-157c725dc8c4"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 8068944,
+                "field_index_value": "21187.1133000000",
+                "field_seance_date": "2024-09-11"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "845b7021-6f46-4071-831a-3984e451b84a",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/845b7021-6f46-4071-831a-3984e451b84a"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 8049090,
+                "field_index_value": "21160.0706000000",
+                "field_seance_date": "2024-09-10"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "362200df-88f4-4225-bdac-e7f8fd663af3",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/362200df-88f4-4225-bdac-e7f8fd663af3"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 8020939,
+                "field_index_value": "21452.6565000000",
+                "field_seance_date": "2024-09-09"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "6a398af2-a55a-4a2a-af69-50cb064b7116",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/6a398af2-a55a-4a2a-af69-50cb064b7116"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7989860,
+                "field_index_value": "21288.1720000000",
+                "field_seance_date": "2024-09-06"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "a0d67d7e-c5be-4b31-ac9c-7b5fb428bda5",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/a0d67d7e-c5be-4b31-ac9c-7b5fb428bda5"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7969332,
+                "field_index_value": "21305.1978000000",
+                "field_seance_date": "2024-09-05"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "5393a3c4-4b60-486b-8552-9ec83db3038e",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/5393a3c4-4b60-486b-8552-9ec83db3038e"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7945152,
+                "field_index_value": "21193.3160000000",
+                "field_seance_date": "2024-09-04"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "428a1114-8b7b-4c68-b1f2-80d893a4d515",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/428a1114-8b7b-4c68-b1f2-80d893a4d515"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7924737,
+                "field_index_value": "21230.0593000000",
+                "field_seance_date": "2024-09-03"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "a8c2280c-6d29-4f1b-b694-26aa637382e0",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/a8c2280c-6d29-4f1b-b694-26aa637382e0"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7891190,
+                "field_index_value": "21164.6632000000",
+                "field_seance_date": "2024-09-02"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "ec92b472-024c-4aa3-81ae-7d455250212b",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/ec92b472-024c-4aa3-81ae-7d455250212b"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7862686,
+                "field_index_value": "21229.8266000000",
+                "field_seance_date": "2024-08-30"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "f722b986-f44f-433b-9668-9ff89feb14ac",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/f722b986-f44f-433b-9668-9ff89feb14ac"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7828462,
+                "field_index_value": "21220.5957000000",
+                "field_seance_date": "2024-08-29"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "be991d5d-3114-4021-ab4b-98e9e4807919",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/be991d5d-3114-4021-ab4b-98e9e4807919"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7799504,
+                "field_index_value": "21250.0253000000",
+                "field_seance_date": "2024-08-28"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "3b544d2c-2cb1-40dd-aaef-707b57c16a00",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/3b544d2c-2cb1-40dd-aaef-707b57c16a00"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7776915,
+                "field_index_value": "21164.0382000000",
+                "field_seance_date": "2024-08-27"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "cb16e730-fb22-44ff-943e-d11379f8ff85",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/cb16e730-fb22-44ff-943e-d11379f8ff85"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7755666,
+                "field_index_value": "21417.0778000000",
+                "field_seance_date": "2024-08-26"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "2d162674-9076-4679-b2eb-40daa3135e4c",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/2d162674-9076-4679-b2eb-40daa3135e4c"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7738086,
+                "field_index_value": "21460.6091000000",
+                "field_seance_date": "2024-08-23"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "8ded06d8-f7ee-4891-ba8c-0607163e8d4b",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/8ded06d8-f7ee-4891-ba8c-0607163e8d4b"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7715623,
+                "field_index_value": "21359.2784000000",
+                "field_seance_date": "2024-08-22"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "d6651d0a-b9b5-480a-bb4f-8105c48549ec",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/d6651d0a-b9b5-480a-bb4f-8105c48549ec"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7694194,
+                "field_index_value": "21596.3004000000",
+                "field_seance_date": "2024-08-19"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "1dc67d4a-87f9-44d5-8e1e-f38d227259ff",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/1dc67d4a-87f9-44d5-8e1e-f38d227259ff"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7674025,
+                "field_index_value": "21582.6492000000",
+                "field_seance_date": "2024-08-16"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "eb9e59a3-b3fa-4c2d-abc6-bb97a3172cdc",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/eb9e59a3-b3fa-4c2d-abc6-bb97a3172cdc"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7657517,
+                "field_index_value": "21507.1983000000",
+                "field_seance_date": "2024-08-15"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "fd430440-d3c7-44e1-adde-dc50bc2e15b5",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/fd430440-d3c7-44e1-adde-dc50bc2e15b5"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7637244,
+                "field_index_value": "21466.2005000000",
+                "field_seance_date": "2024-08-13"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "5bb908f7-b2c7-426c-8a94-005e74d70f36",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/5bb908f7-b2c7-426c-8a94-005e74d70f36"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7622664,
+                "field_index_value": "21287.6962000000",
+                "field_seance_date": "2024-08-12"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "1e5bb426-fc72-4553-a5c4-66d78f6278bb",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/1e5bb426-fc72-4553-a5c4-66d78f6278bb"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7605778,
+                "field_index_value": "21296.9909000000",
+                "field_seance_date": "2024-08-09"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "a9006905-9f0b-46b0-a5c3-44dc0e54e694",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/a9006905-9f0b-46b0-a5c3-44dc0e54e694"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7591874,
+                "field_index_value": "21401.2824000000",
+                "field_seance_date": "2024-08-08"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "878d8388-6bf9-4afb-864b-489a4993f3f6",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/878d8388-6bf9-4afb-864b-489a4993f3f6"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7577605,
+                "field_index_value": "21427.4897000000",
+                "field_seance_date": "2024-08-07"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "2d55cf42-f7c9-4c2f-a891-0b4af3e2c007",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/2d55cf42-f7c9-4c2f-a891-0b4af3e2c007"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7560946,
+                "field_index_value": "21347.2664000000",
+                "field_seance_date": "2024-08-06"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "37924fb0-4be8-4549-98e0-a28d1ced3d8a",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/37924fb0-4be8-4549-98e0-a28d1ced3d8a"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7541311,
+                "field_index_value": "20811.6953000000",
+                "field_seance_date": "2024-08-05"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "8112d31f-720d-49ca-ac8e-760724ac4a4b",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/8112d31f-720d-49ca-ac8e-760724ac4a4b"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7505009,
+                "field_index_value": "21704.1580000000",
+                "field_seance_date": "2024-08-02"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "d485aa88-c1af-462a-8d20-e1f40a785435",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/d485aa88-c1af-462a-8d20-e1f40a785435"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7486333,
+                "field_index_value": "21564.7631000000",
+                "field_seance_date": "2024-08-01"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "30437ed0-a361-4d20-a39c-0aa49b710536",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/30437ed0-a361-4d20-a39c-0aa49b710536"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7470217,
+                "field_index_value": "21667.3037000000",
+                "field_seance_date": "2024-07-31"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "82af4f27-febf-4b41-9612-2c5ef865b9ff",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/82af4f27-febf-4b41-9612-2c5ef865b9ff"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7443609,
+                "field_index_value": "21616.9857000000",
+                "field_seance_date": "2024-07-29"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "b998e24b-f7f1-4412-87a0-e71471f4162e",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/b998e24b-f7f1-4412-87a0-e71471f4162e"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7420322,
+                "field_index_value": "21443.6850000000",
+                "field_seance_date": "2024-07-26"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "263880d3-8079-4550-9211-2cd151b08359",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/263880d3-8079-4550-9211-2cd151b08359"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7398596,
+                "field_index_value": "21401.2636000000",
+                "field_seance_date": "2024-07-25"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "40dcdc17-f959-4045-a3f3-c7b93b69beba",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/40dcdc17-f959-4045-a3f3-c7b93b69beba"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7381308,
+                "field_index_value": "21363.8230000000",
+                "field_seance_date": "2024-07-24"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "07587a15-020e-49ea-baf6-b87d041c670c",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/07587a15-020e-49ea-baf6-b87d041c670c"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7358509,
+                "field_index_value": "21225.0319000000",
+                "field_seance_date": "2024-07-23"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "39f0178b-4bd9-4859-9b56-844805d18e6f",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/39f0178b-4bd9-4859-9b56-844805d18e6f"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7333658,
+                "field_index_value": "21497.3215000000",
+                "field_seance_date": "2024-07-22"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "fffb3a68-c5be-4ee1-9552-f7b97e9aeff2",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/fffb3a68-c5be-4ee1-9552-f7b97e9aeff2"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7314097,
+                "field_index_value": "21204.6816000000",
+                "field_seance_date": "2024-07-19"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "ebfd531a-db2f-447d-ac46-e452074e97f7",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/ebfd531a-db2f-447d-ac46-e452074e97f7"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7291797,
+                "field_index_value": "21071.2420000000",
+                "field_seance_date": "2024-07-18"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "5ac8e4c2-f402-4e26-be0c-18982479142a",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/5ac8e4c2-f402-4e26-be0c-18982479142a"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7273085,
+                "field_index_value": "20900.2173000000",
+                "field_seance_date": "2024-07-17"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "f05efc2e-3639-45da-a661-d6f6bebe5bf2",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/f05efc2e-3639-45da-a661-d6f6bebe5bf2"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7246427,
+                "field_index_value": "20917.3236000000",
+                "field_seance_date": "2024-07-16"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "e4c725a8-3393-414d-9626-183e615b1ddb",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/e4c725a8-3393-414d-9626-183e615b1ddb"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7233571,
+                "field_index_value": "20595.9061000000",
+                "field_seance_date": "2024-07-15"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "65f3894c-482c-4422-9e51-6b1d489af48c",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/65f3894c-482c-4422-9e51-6b1d489af48c"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7219031,
+                "field_index_value": "20750.6978000000",
+                "field_seance_date": "2024-07-12"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "6273896a-cb5e-42cd-b965-c179ebd54470",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/6273896a-cb5e-42cd-b965-c179ebd54470"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7201959,
+                "field_index_value": "20709.0956000000",
+                "field_seance_date": "2024-07-11"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "d81ba970-626e-4e09-aec1-be32dd9c7766",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/d81ba970-626e-4e09-aec1-be32dd9c7766"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7185921,
+                "field_index_value": "20478.9458000000",
+                "field_seance_date": "2024-07-10"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "dce7c40d-8434-427b-a9bc-f8cd06711afa",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/dce7c40d-8434-427b-a9bc-f8cd06711afa"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7172548,
+                "field_index_value": "20337.5729000000",
+                "field_seance_date": "2024-07-09"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "c17d32c8-4ced-4312-b6d1-90ba6e363142",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/c17d32c8-4ced-4312-b6d1-90ba6e363142"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7161281,
+                "field_index_value": "20666.7145000000",
+                "field_seance_date": "2024-07-08"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "d25b20c2-490e-4262-b404-ca25303e0ca0",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/d25b20c2-490e-4262-b404-ca25303e0ca0"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7151233,
+                "field_index_value": "20556.3703000000",
+                "field_seance_date": "2024-07-05"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "7b55b7d4-3088-455d-ac2f-13c74ca3c0e7",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/7b55b7d4-3088-455d-ac2f-13c74ca3c0e7"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7135913,
+                "field_index_value": "20321.8930000000",
+                "field_seance_date": "2024-07-04"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "d032fe2a-636e-4569-8223-87bb70b1ef96",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/d032fe2a-636e-4569-8223-87bb70b1ef96"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7121737,
+                "field_index_value": "20442.9912000000",
+                "field_seance_date": "2024-07-03"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "aa92bd11-5e23-42c6-bc9e-68d992df0c48",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/aa92bd11-5e23-42c6-bc9e-68d992df0c48"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7098436,
+                "field_index_value": "20336.5215000000",
+                "field_seance_date": "2024-07-02"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "59e5184e-336b-4941-b576-19a7254bd6c0",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/59e5184e-336b-4941-b576-19a7254bd6c0"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7080175,
+                "field_index_value": "20833.2867000000",
+                "field_seance_date": "2024-07-01"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "3b01f6a7-5dc0-4733-89b2-e3e6e7bc8634",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/3b01f6a7-5dc0-4733-89b2-e3e6e7bc8634"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7066861,
+                "field_index_value": "20754.9387000000",
+                "field_seance_date": "2024-06-28"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "27692be8-013e-4e78-8bd1-ff7c8dfd7284",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/27692be8-013e-4e78-8bd1-ff7c8dfd7284"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7053595,
+                "field_index_value": "20870.1385000000",
+                "field_seance_date": "2024-06-27"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "5055c64a-4d30-4586-83e8-a6e353e3cd99",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/5055c64a-4d30-4586-83e8-a6e353e3cd99"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7039568,
+                "field_index_value": "20881.6172000000",
+                "field_seance_date": "2024-06-26"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "88e196b8-d711-453f-bfc5-55840ccb6143",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/88e196b8-d711-453f-bfc5-55840ccb6143"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7025307,
+                "field_index_value": "21039.8660000000",
+                "field_seance_date": "2024-06-25"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "4be2484f-d169-4ba3-9383-991ce7a7946f",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/4be2484f-d169-4ba3-9383-991ce7a7946f"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 7001164,
+                "field_index_value": "20530.0662000000",
+                "field_seance_date": "2024-06-24"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "759a163a-f40a-49bc-a930-d901cefd71a8",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/759a163a-f40a-49bc-a930-d901cefd71a8"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6988333,
+                "field_index_value": "20757.5706000000",
+                "field_seance_date": "2024-06-21"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "484ac381-ae7f-4cce-bb2d-b113c443e2d4",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/484ac381-ae7f-4cce-bb2d-b113c443e2d4"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6975512,
+                "field_index_value": "20716.0541000000",
+                "field_seance_date": "2024-06-20"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "483a086a-5b3f-4a04-9ad8-41c27fd3fb40",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/483a086a-5b3f-4a04-9ad8-41c27fd3fb40"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6961243,
+                "field_index_value": "20749.7384000000",
+                "field_seance_date": "2024-06-19"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "258b7e6a-d935-4047-8a87-3fbb5ccad3c1",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/258b7e6a-d935-4047-8a87-3fbb5ccad3c1"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6935248,
+                "field_index_value": "20596.2225000000",
+                "field_seance_date": "2024-06-14"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "5d9ff611-a65b-4d2d-bfc6-55ba314d0adc",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/5d9ff611-a65b-4d2d-bfc6-55ba314d0adc"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6923685,
+                "field_index_value": "20644.9964000000",
+                "field_seance_date": "2024-06-13"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "679fabe7-b962-4a8f-9ee3-67981c4e0882",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/679fabe7-b962-4a8f-9ee3-67981c4e0882"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6910502,
+                "field_index_value": "20775.9250000000",
+                "field_seance_date": "2024-06-12"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "9011eeea-f0df-4b39-a101-dc8ba15b22f4",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/9011eeea-f0df-4b39-a101-dc8ba15b22f4"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6898088,
+                "field_index_value": "20814.4699000000",
+                "field_seance_date": "2024-06-11"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "6cc8ee1e-f712-432b-80b8-b0af3a2068e9",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/6cc8ee1e-f712-432b-80b8-b0af3a2068e9"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6887294,
+                "field_index_value": "20643.3264000000",
+                "field_seance_date": "2024-06-10"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "d207b70e-160d-4d76-bad2-133786a8d91c",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/d207b70e-160d-4d76-bad2-133786a8d91c"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6875490,
+                "field_index_value": "20767.1215000000",
+                "field_seance_date": "2024-06-07"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "7fbba124-2914-45af-946f-8dac9d833f6b",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/7fbba124-2914-45af-946f-8dac9d833f6b"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6862416,
+                "field_index_value": "20726.8308000000",
+                "field_seance_date": "2024-06-06"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "14182d86-c4ed-4537-961f-5c36dad819fc",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/14182d86-c4ed-4537-961f-5c36dad819fc"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6846494,
+                "field_index_value": "20195.1013000000",
+                "field_seance_date": "2024-06-05"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "3469ef69-fa7c-4dab-92e3-2a10fc749817",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/3469ef69-fa7c-4dab-92e3-2a10fc749817"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6824568,
+                "field_index_value": "20983.4514000000",
+                "field_seance_date": "2024-06-04"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "c1c08572-c013-4f56-8b77-aa0422e571ee",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/c1c08572-c013-4f56-8b77-aa0422e571ee"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6810998,
+                "field_index_value": "21003.9798000000",
+                "field_seance_date": "2024-06-03"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "9c3279cb-2fb5-4a07-b478-8c81692330da",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/9c3279cb-2fb5-4a07-b478-8c81692330da"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6792560,
+                "field_index_value": "21051.3952000000",
+                "field_seance_date": "2024-05-31"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "aed1858b-ec59-4f1c-a331-79d51a1cb8c2",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/aed1858b-ec59-4f1c-a331-79d51a1cb8c2"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6774794,
+                "field_index_value": "21122.9177000000",
+                "field_seance_date": "2024-05-30"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "2cc03fc8-cf3e-4173-bab5-ecea3a02eac8",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/2cc03fc8-cf3e-4173-bab5-ecea3a02eac8"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6761844,
+                "field_index_value": "21416.9286000000",
+                "field_seance_date": "2024-05-29"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "b2436159-8418-46b3-a300-8fe5bcbbf32f",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/b2436159-8418-46b3-a300-8fe5bcbbf32f"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6744074,
+                "field_index_value": "21377.7245000000",
+                "field_seance_date": "2024-05-28"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "a335520c-d556-4027-bd31-644b10847818",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/a335520c-d556-4027-bd31-644b10847818"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6725722,
+                "field_index_value": "21402.0051000000",
+                "field_seance_date": "2024-05-27"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "a8d22040-6cae-4295-9ab1-723130c6ad81",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/a8d22040-6cae-4295-9ab1-723130c6ad81"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6708452,
+                "field_index_value": "21458.2003000000",
+                "field_seance_date": "2024-05-24"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "91716d02-f97d-41c0-95bd-222ceacba894",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/91716d02-f97d-41c0-95bd-222ceacba894"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6693042,
+                "field_index_value": "21516.9018000000",
+                "field_seance_date": "2024-05-23"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "0ec9bcf0-7e3f-4a33-925a-7af281ce5681",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/0ec9bcf0-7e3f-4a33-925a-7af281ce5681"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6675597,
+                "field_index_value": "21558.3689000000",
+                "field_seance_date": "2024-05-22"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "e9071c7a-946f-49aa-b3da-511eab33f1f4",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/e9071c7a-946f-49aa-b3da-511eab33f1f4"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6650418,
+                "field_index_value": "21581.9136000000",
+                "field_seance_date": "2024-05-21"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "8a5195ab-f6a1-4660-85d6-81a1d5f2ad7e",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/8a5195ab-f6a1-4660-85d6-81a1d5f2ad7e"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6625072,
+                "field_index_value": "21537.5172000000",
+                "field_seance_date": "2024-05-20"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "5ce557f0-e060-4a76-8732-3c937d5abe24",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/5ce557f0-e060-4a76-8732-3c937d5abe24"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6610293,
+                "field_index_value": "21433.2220000000",
+                "field_seance_date": "2024-05-17"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "def69617-cff3-4d60-9822-1a952e586774",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/def69617-cff3-4d60-9822-1a952e586774"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6592496,
+                "field_index_value": "21414.7965000000",
+                "field_seance_date": "2024-05-16"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "13d4bbdd-b7f5-4b1f-b069-39ff65364d17",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/13d4bbdd-b7f5-4b1f-b069-39ff65364d17"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6569534,
+                "field_index_value": "21424.7798000000",
+                "field_seance_date": "2024-05-15"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "8a7313f0-b708-43c4-af24-a54c26febb31",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/8a7313f0-b708-43c4-af24-a54c26febb31"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6544183,
+                "field_index_value": "21413.8303000000",
+                "field_seance_date": "2024-05-14"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "f1cf6da6-57cf-4be1-a8b1-594fc106afda",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/f1cf6da6-57cf-4be1-a8b1-594fc106afda"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6517422,
+                "field_index_value": "21328.0499000000",
+                "field_seance_date": "2024-05-13"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "d38a7ce1-c033-453e-bfee-1e367eda8697",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/d38a7ce1-c033-453e-bfee-1e367eda8697"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6492164,
+                "field_index_value": "21411.3968000000",
+                "field_seance_date": "2024-05-10"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "cb97a5f7-e1f7-48d8-853f-655fec08c423",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/cb97a5f7-e1f7-48d8-853f-655fec08c423"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6467160,
+                "field_index_value": "21224.4681000000",
+                "field_seance_date": "2024-05-09"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "69c73a4f-2c4e-4c40-8cb2-dcea9dd88597",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/69c73a4f-2c4e-4c40-8cb2-dcea9dd88597"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6437641,
+                "field_index_value": "21041.4577000000",
+                "field_seance_date": "2024-05-08"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "f981a63d-28de-4702-bff4-394a95ad805b",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/f981a63d-28de-4702-bff4-394a95ad805b"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6416583,
+                "field_index_value": "21093.8436000000",
+                "field_seance_date": "2024-05-07"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "2d78819b-45f0-4c7d-9125-73125e5f4df1",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/2d78819b-45f0-4c7d-9125-73125e5f4df1"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6398134,
+                "field_index_value": "21118.4565000000",
+                "field_seance_date": "2024-05-06"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "f7dac4e7-8fbf-4872-8460-8e6c8edee71b",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/f7dac4e7-8fbf-4872-8460-8e6c8edee71b"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6364629,
+                "field_index_value": "21185.6251000000",
+                "field_seance_date": "2024-05-03"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "07de6739-09e7-4edb-ba20-c2909555e495",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/07de6739-09e7-4edb-ba20-c2909555e495"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6342735,
+                "field_index_value": "21279.3523000000",
+                "field_seance_date": "2024-05-02"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "f89c05a2-98d3-4785-ad8b-6c42dbba4c52",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/f89c05a2-98d3-4785-ad8b-6c42dbba4c52"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6323162,
+                "field_index_value": "21143.1562000000",
+                "field_seance_date": "2024-04-30"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "cd1969f7-aacd-49a3-a37f-0a4abe45b35f",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/cd1969f7-aacd-49a3-a37f-0a4abe45b35f"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6303113,
+                "field_index_value": "21038.0816000000",
+                "field_seance_date": "2024-04-29"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "b601c187-90e9-407c-82be-ceb65b4a4e3a",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/b601c187-90e9-407c-82be-ceb65b4a4e3a"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6282086,
+                "field_index_value": "20959.5528000000",
+                "field_seance_date": "2024-04-26"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "b441c019-5ea3-4e8a-bb41-5ddee9dd4b50",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/b441c019-5ea3-4e8a-bb41-5ddee9dd4b50"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6259847,
+                "field_index_value": "20953.6559000000",
+                "field_seance_date": "2024-04-25"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "31f1c668-db82-4da6-b6ba-0ecbbc5afe27",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/31f1c668-db82-4da6-b6ba-0ecbbc5afe27"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6236858,
+                "field_index_value": "20828.8175000000",
+                "field_seance_date": "2024-04-24"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "06ae985f-f5b7-40d5-83c0-f7f2dc2ecaa8",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/06ae985f-f5b7-40d5-83c0-f7f2dc2ecaa8"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6212295,
+                "field_index_value": "20886.7871000000",
+                "field_seance_date": "2024-04-23"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "a43a8554-5a0d-4660-abe5-49d2776fdd6f",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/a43a8554-5a0d-4660-abe5-49d2776fdd6f"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6177745,
+                "field_index_value": "20890.6289000000",
+                "field_seance_date": "2024-04-22"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "32839d62-4857-4032-ac31-82a1ffe674af",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/32839d62-4857-4032-ac31-82a1ffe674af"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6139804,
+                "field_index_value": "21430.4224000000",
+                "field_seance_date": "2024-04-19"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "3710469c-2912-4485-867b-e977e12b3307",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/3710469c-2912-4485-867b-e977e12b3307"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6107341,
+                "field_index_value": "21241.7301000000",
+                "field_seance_date": "2024-04-18"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "be9bf211-2561-4fab-a449-bc42cd9887ad",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/be9bf211-2561-4fab-a449-bc42cd9887ad"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6075684,
+                "field_index_value": "20932.5147000000",
+                "field_seance_date": "2024-04-17"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "b0d64af3-c2f7-4ae3-af4e-b7596c7fdd14",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/b0d64af3-c2f7-4ae3-af4e-b7596c7fdd14"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 6036100,
+                "field_index_value": "20665.7372000000",
+                "field_seance_date": "2024-04-16"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "b6621aaa-90b8-4b87-a1d8-73f5a095459f",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/b6621aaa-90b8-4b87-a1d8-73f5a095459f"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 5991991,
+                "field_index_value": "20644.9523000000",
+                "field_seance_date": "2024-04-15"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "f417f6fd-c868-41ca-94c9-ce9be58e24a2",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/f417f6fd-c868-41ca-94c9-ce9be58e24a2"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 5941608,
+                "field_index_value": "20663.5091000000",
+                "field_seance_date": "2024-04-09"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "e96ed397-9924-4c31-b4ca-3c5bdd160552",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/e96ed397-9924-4c31-b4ca-3c5bdd160552"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 5908850,
+                "field_index_value": "20436.1730000000",
+                "field_seance_date": "2024-04-08"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "9e50ef6d-84d7-44d9-bf21-72ce626610f6",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/9e50ef6d-84d7-44d9-bf21-72ce626610f6"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 5882466,
+                "field_index_value": "20284.1678000000",
+                "field_seance_date": "2024-04-05"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "5e36c7bb-6d96-418f-b280-51a16104c27f",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/5e36c7bb-6d96-418f-b280-51a16104c27f"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 5861442,
+                "field_index_value": "20261.9317000000",
+                "field_seance_date": "2024-04-04"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "131644f6-5986-4d46-ab0a-ac8cee3350ab",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/131644f6-5986-4d46-ab0a-ac8cee3350ab"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 5838678,
+                "field_index_value": "20272.0790000000",
+                "field_seance_date": "2024-04-03"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "1e1c9dc7-487a-4929-aa52-bac1a016c808",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/1e1c9dc7-487a-4929-aa52-bac1a016c808"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 5810529,
+                "field_index_value": "20227.2658000000",
+                "field_seance_date": "2024-04-02"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "43a56170-503e-49c7-8ee0-dce3ddae6bd8",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/43a56170-503e-49c7-8ee0-dce3ddae6bd8"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 5788482,
+                "field_index_value": "20151.1669000000",
+                "field_seance_date": "2024-04-01"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "0a87aa27-b808-4536-9346-09dafe579529",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/0a87aa27-b808-4536-9346-09dafe579529"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 5770501,
+                "field_index_value": "20019.4317000000",
+                "field_seance_date": "2024-03-29"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "ae0ece7a-3a8f-4721-9c80-4ea19b357bbc",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/ae0ece7a-3a8f-4721-9c80-4ea19b357bbc"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 5747657,
+                "field_index_value": "20243.1905000000",
+                "field_seance_date": "2024-03-28"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "c020dc96-a759-468b-9910-09ce2c3db501",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/c020dc96-a759-468b-9910-09ce2c3db501"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 5729412,
+                "field_index_value": "20256.6989000000",
+                "field_seance_date": "2024-03-27"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "858226b0-7f8c-4fbd-b259-7a453c8c1a57",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/858226b0-7f8c-4fbd-b259-7a453c8c1a57"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 5713599,
+                "field_index_value": "20004.4683000000",
+                "field_seance_date": "2024-03-26"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "61baefe3-2147-475e-942f-4c539a939a68",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/61baefe3-2147-475e-942f-4c539a939a68"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 5700288,
+                "field_index_value": "20198.0052000000",
+                "field_seance_date": "2024-03-25"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "4312ed09-a54d-45a7-8caa-7527c498e364",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/4312ed09-a54d-45a7-8caa-7527c498e364"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 5687820,
+                "field_index_value": "20148.6744000000",
+                "field_seance_date": "2024-03-22"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "2b64a883-fbb4-41c3-85d8-de089c87e9d5",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/2b64a883-fbb4-41c3-85d8-de089c87e9d5"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 5675877,
+                "field_index_value": "20206.2307000000",
+                "field_seance_date": "2024-03-21"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "f439aba1-abcf-4c3b-8f70-73732eef7916",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/f439aba1-abcf-4c3b-8f70-73732eef7916"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 5664030,
+                "field_index_value": "20102.4565000000",
+                "field_seance_date": "2024-03-20"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "38fce424-52d8-4a77-975d-32308120ccfc",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/38fce424-52d8-4a77-975d-32308120ccfc"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 5645873,
+                "field_index_value": "20091.6247000000",
+                "field_seance_date": "2024-03-19"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "f639252e-3b10-4353-a4b7-e49f938fc752",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/f639252e-3b10-4353-a4b7-e49f938fc752"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 5627271,
+                "field_index_value": "20270.0572000000",
+                "field_seance_date": "2024-03-18"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "e57a3b5a-99a1-403c-a2d0-c86ed2f33bc2",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/e57a3b5a-99a1-403c-a2d0-c86ed2f33bc2"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 5610758,
+                "field_index_value": "20247.3087000000",
+                "field_seance_date": "2024-03-15"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "0761dcbe-fc55-438d-a074-4343947d5269",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/0761dcbe-fc55-438d-a074-4343947d5269"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 5594099,
+                "field_index_value": "20146.3612000000",
+                "field_seance_date": "2024-03-14"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "ad88e922-a6b2-4c25-9b24-79aaa555b95f",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/ad88e922-a6b2-4c25-9b24-79aaa555b95f"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 5582964,
+                "field_index_value": "19973.3658000000",
+                "field_seance_date": "2024-03-13"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "66bbe284-b432-43cc-b459-aacea3b85103",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/66bbe284-b432-43cc-b459-aacea3b85103"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 5573049,
+                "field_index_value": "19910.9598000000",
+                "field_seance_date": "2024-03-12"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "f32310d2-57fc-4bb5-8660-5d56abb0355c",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/f32310d2-57fc-4bb5-8660-5d56abb0355c"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 5563009,
+                "field_index_value": "19933.3978000000",
+                "field_seance_date": "2024-03-11"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "a343841c-a6b1-4f8b-9ecf-47197831a283",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/a343841c-a6b1-4f8b-9ecf-47197831a283"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 5548020,
+                "field_index_value": "20121.1920000000",
+                "field_seance_date": "2024-03-08"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "0810ca10-145c-4f96-857b-0eeb761ea34a",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/0810ca10-145c-4f96-857b-0eeb761ea34a"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 5531935,
+                "field_index_value": "20113.2811000000",
+                "field_seance_date": "2024-03-07"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "f08ba224-d7de-45df-92b1-941656f77a72",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/f08ba224-d7de-45df-92b1-941656f77a72"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 5518401,
+                "field_index_value": "20109.7955000000",
+                "field_seance_date": "2024-03-06"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "ed2aeb11-1183-47d1-89d1-1b0bf797c13f",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/ed2aeb11-1183-47d1-89d1-1b0bf797c13f"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 5499666,
+                "field_index_value": "20315.2692000000",
+                "field_seance_date": "2024-03-05"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "c617966e-f7eb-4874-935c-f5b26ab8e742",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/c617966e-f7eb-4874-935c-f5b26ab8e742"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 5479740,
+                "field_index_value": "20142.6130000000",
+                "field_seance_date": "2024-03-04"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "afac98c4-124b-419f-8938-9d4393e7be2e",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/afac98c4-124b-419f-8938-9d4393e7be2e"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 5461216,
+                "field_index_value": "20088.1020000000",
+                "field_seance_date": "2024-03-01"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "9b696fdf-6366-4710-bc5d-7795eb0f7348",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/9b696fdf-6366-4710-bc5d-7795eb0f7348"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 5444086,
+                "field_index_value": "20225.2672000000",
+                "field_seance_date": "2024-02-29"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "686f0d5d-e7b1-4744-9a39-212e1b9de42f",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/686f0d5d-e7b1-4744-9a39-212e1b9de42f"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 5418877,
+                "field_index_value": "20330.1219000000",
+                "field_seance_date": "2024-02-28"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "1a77d11d-4252-48ae-8dc6-9f244f44d092",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/1a77d11d-4252-48ae-8dc6-9f244f44d092"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 5397246,
+                "field_index_value": "20289.5983000000",
+                "field_seance_date": "2024-02-27"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "748d2deb-f064-48a9-99c2-d7bcfd9d4013",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/748d2deb-f064-48a9-99c2-d7bcfd9d4013"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 5376149,
+                "field_index_value": "20290.1250000000",
+                "field_seance_date": "2024-02-26"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "2ba31582-161f-4264-8849-7eac9b618583",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/2ba31582-161f-4264-8849-7eac9b618583"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 5360163,
+                "field_index_value": "20255.3793000000",
+                "field_seance_date": "2024-02-23"
+            }
+        },
+        {
+            "type": "bourse_data--index_history",
+            "id": "759b1042-ca6a-4ea1-a33a-63714331c8bd",
+            "links": {
+                "self": {
+                    "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history\/759b1042-ca6a-4ea1-a33a-63714331c8bd"
+                }
+            },
+            "attributes": {
+                "drupal_internal__id": 5337733,
+                "field_index_value": "20145.9192000000",
+                "field_seance_date": "2024-02-22"
+            }
+        }
+    ],
+    "meta": {
+        "count": 741
+    },
+    "links": {
+        "first": {
+            "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history?fields%5Bbourse_data--index_history%5D=drupal_internal__id%2Cfield_seance_date%2Cfield_index_value\u0026sort%5Bdate-seance%5D%5Bdirection%5D=DESC\u0026sort%5Bdate-seance%5D%5Blangcode%5D\u0026sort%5Bdate-seance%5D%5Bpath%5D=field_seance_date\u0026page%5Boffset%5D=0\u0026page%5Blimit%5D=250\u0026filter%5Bpublished%5D=1\u0026filter%5Bfilter-date-start-vh-select%5D%5Bcondition%5D%5Bpath%5D=field_seance_date\u0026filter%5Bfilter-date-start-vh-select%5D%5Bcondition%5D%5Boperator%5D=%3E%3D\u0026filter%5Bfilter-date-start-vh-select%5D%5Bcondition%5D%5Bvalue%5D=2023-02-05\u0026filter%5Bindex-historique-code%5D%5Bcondition%5D%5Bpath%5D=field_index_code.tid\u0026filter%5Bindex-historique-code%5D%5Bcondition%5D%5Boperator%5D=%3D\u0026filter%5Bindex-historique-code%5D%5Bcondition%5D%5Bvalue%5D=512312"
+        },
+        "last": {
+            "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history?fields%5Bbourse_data--index_history%5D=drupal_internal__id%2Cfield_seance_date%2Cfield_index_value\u0026sort%5Bdate-seance%5D%5Bdirection%5D=DESC\u0026sort%5Bdate-seance%5D%5Blangcode%5D\u0026sort%5Bdate-seance%5D%5Bpath%5D=field_seance_date\u0026page%5Boffset%5D=500\u0026page%5Blimit%5D=250\u0026filter%5Bpublished%5D=1\u0026filter%5Bfilter-date-start-vh-select%5D%5Bcondition%5D%5Bpath%5D=field_seance_date\u0026filter%5Bfilter-date-start-vh-select%5D%5Bcondition%5D%5Boperator%5D=%3E%3D\u0026filter%5Bfilter-date-start-vh-select%5D%5Bcondition%5D%5Bvalue%5D=2023-02-05\u0026filter%5Bindex-historique-code%5D%5Bcondition%5D%5Bpath%5D=field_index_code.tid\u0026filter%5Bindex-historique-code%5D%5Bcondition%5D%5Boperator%5D=%3D\u0026filter%5Bindex-historique-code%5D%5Bcondition%5D%5Bvalue%5D=512312"
+        },
+        "next": {
+            "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history?fields%5Bbourse_data--index_history%5D=drupal_internal__id%2Cfield_seance_date%2Cfield_index_value\u0026sort%5Bdate-seance%5D%5Bdirection%5D=DESC\u0026sort%5Bdate-seance%5D%5Blangcode%5D\u0026sort%5Bdate-seance%5D%5Bpath%5D=field_seance_date\u0026page%5Boffset%5D=500\u0026page%5Blimit%5D=250\u0026filter%5Bpublished%5D=1\u0026filter%5Bfilter-date-start-vh-select%5D%5Bcondition%5D%5Bpath%5D=field_seance_date\u0026filter%5Bfilter-date-start-vh-select%5D%5Bcondition%5D%5Boperator%5D=%3E%3D\u0026filter%5Bfilter-date-start-vh-select%5D%5Bcondition%5D%5Bvalue%5D=2023-02-05\u0026filter%5Bindex-historique-code%5D%5Bcondition%5D%5Bpath%5D=field_index_code.tid\u0026filter%5Bindex-historique-code%5D%5Bcondition%5D%5Boperator%5D=%3D\u0026filter%5Bindex-historique-code%5D%5Bcondition%5D%5Bvalue%5D=512312"
+        },
+        "prev": {
+            "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history?fields%5Bbourse_data--index_history%5D=drupal_internal__id%2Cfield_seance_date%2Cfield_index_value\u0026sort%5Bdate-seance%5D%5Bdirection%5D=DESC\u0026sort%5Bdate-seance%5D%5Blangcode%5D\u0026sort%5Bdate-seance%5D%5Bpath%5D=field_seance_date\u0026page%5Boffset%5D=0\u0026page%5Blimit%5D=250\u0026filter%5Bpublished%5D=1\u0026filter%5Bfilter-date-start-vh-select%5D%5Bcondition%5D%5Bpath%5D=field_seance_date\u0026filter%5Bfilter-date-start-vh-select%5D%5Bcondition%5D%5Boperator%5D=%3E%3D\u0026filter%5Bfilter-date-start-vh-select%5D%5Bcondition%5D%5Bvalue%5D=2023-02-05\u0026filter%5Bindex-historique-code%5D%5Bcondition%5D%5Bpath%5D=field_index_code.tid\u0026filter%5Bindex-historique-code%5D%5Bcondition%5D%5Boperator%5D=%3D\u0026filter%5Bindex-historique-code%5D%5Bcondition%5D%5Bvalue%5D=512312"
+        },
+        "self": {
+            "href": "https:\/\/api.casablanca-bourse.com\/fr\/api\/bourse_data\/index_history?fields%5Bbourse_data--index_history%5D=drupal_internal__id%2Cfield_seance_date%2Cfield_index_value\u0026filter%5Bpublished%5D=1\u0026filter%5Bfilter-date-start-vh-select%5D%5Bcondition%5D%5Bpath%5D=field_seance_date\u0026filter%5Bfilter-date-start-vh-select%5D%5Bcondition%5D%5Boperator%5D=%3E%3D\u0026filter%5Bfilter-date-start-vh-select%5D%5Bcondition%5D%5Bvalue%5D=2023-02-05\u0026filter%5Bindex-historique-code%5D%5Bcondition%5D%5Bpath%5D=field_index_code.tid\u0026filter%5Bindex-historique-code%5D%5Bcondition%5D%5Boperator%5D=%3D\u0026filter%5Bindex-historique-code%5D%5Bcondition%5D%5Bvalue%5D=512312\u0026page%5Boffset%5D=250\u0026page%5Blimit%5D=250\u0026sort%5Bdate-seance%5D%5Bpath%5D=field_seance_date\u0026sort%5Bdate-seance%5D%5Bdirection%5D=DESC"
+        }
+    }
+}

@@ -1,0 +1,32 @@
+# Data correction parameters.
+# All corrections are applied in src/lamiaty/data/corrections.py
+# Values here drive the correction functions — no magic numbers in code.
+
+cement_break:
+  break_date: "2022-04-01"
+  correction_factor: 759          # PLACEHOLDER — multiply pre-break values by this factor
+  direction: multiply_pre_break   # values BEFORE break_date are scaled up
+  status: PLACEHOLDER             # Change to CONFIRMED once validated with APC
+  confirmed_by: null              # Set to "APC" or analyst name when confirmed
+  # NOTE: At runtime, corrections.py emits a UserWarning if confirmed_by is null.
+  # The pipeline still runs, but output should not be treated as production-ready.
+  notes: >
+    Rupture structurelle détectée en avril 2022 avec facteur multiplicatif ~759.
+    Hypothèse : passage d'unités milliers de tonnes → tonnes, ou changement de
+    périmètre APC. Contacter APC pour documentation officielle avant validation.
+
+investissement_etat:
+  treatment: monthly_diff         # monthly_diff | keep_as_is
+  # monthly_diff: applies .diff(1) to convert suspected YTD cumulative to monthly flow
+  # keep_as_is: no transformation (triggers a UserWarning at runtime)
+  confirmed_by: null              # Set to "TGR" or analyst name when confirmed
+  notes: >
+    Valeurs systématiquement très négatives en janvier de chaque année
+    (ex: -53 272 MDH en jan 2019). Hypothèse : cumul YTD de l'exécution budgétaire.
+    Confirmer définition exacte avec TGR/MEF avant utilisation dans le DFM.
+    La série est exclue du modèle (include_in_model: false dans data_sources.yaml)
+    tant que la définition n'est pas confirmée.
+
+lafarge_string_fix:
+  strip_commas: true              # Remove thousands separator commas ("1,612" → 1612.0)
+  cast_to_float: true

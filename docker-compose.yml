@@ -1,0 +1,45 @@
+version: "3.9"
+
+services:
+  # ── Streamlit dashboard ────────────────────────────────────────────────
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: btp-nowcasting:latest
+    container_name: btp_nowcasting_app
+    ports:
+      - "8501:8501"
+    volumes:
+      # Mount processed outputs so they persist between container restarts
+      - ./data/interim:/app/data/interim
+      - ./data/processed:/app/data/processed
+      - ./data/vintages:/app/data/vintages
+      - ./docs:/app/docs
+    environment:
+      - STREAMLIT_SERVER_HEADLESS=true
+      - STREAMLIT_BROWSER_GATHER_USAGE_STATS=false
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8501/_stcore/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+
+  # ── Test runner (run once then exit) ───────────────────────────────────
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: btp-nowcasting:latest
+    container_name: btp_nowcasting_tests
+    command: >
+      pytest tests/ -v
+      --cov=src/lamiaty
+      --cov-report=term-missing
+      --cov-report=html:/app/docs/coverage
+    volumes:
+      - ./docs:/app/docs
+    profiles:
+      - test   # only runs with: docker compose --profile test up tests
