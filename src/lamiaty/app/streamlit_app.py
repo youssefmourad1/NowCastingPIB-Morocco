@@ -110,6 +110,10 @@ PAGES = {
     "🟠 Investissement État (§3.2)": "investissement",
     "✅ Validation pipeline": "pipeline",
     "📈 Stationnarité": "stationarity",
+    "🎯 Estimation DFM": "dfm",
+    "🔮 Nowcast": "nowcast",
+    "📉 Backtesting": "backtest",
+    "📰 News decomposition": "news",
 }
 
 with st.sidebar:
@@ -144,7 +148,7 @@ with st.sidebar:
     st.caption(
         "Méthode : Dynamic Factor Model  \n"
         "Réf : Danov et al. (2026) IMF WP/26/32  \n"
-        "Phase 1 — Infrastructure données"
+        "Phase 1 ✅ · Phase 2 ✅ · Phase 3 ✅"
     )
 
 
@@ -303,10 +307,13 @@ def page_audit():
     with tab_series:
         st.subheader("Séries brutes — visualisation interactive")
         numeric = raw.select_dtypes("number")
+        all_opts = numeric.columns.tolist()
+        preferred = ["va_construction", "consommation_ciment", "credits_immobilier"]
+        default_sel = [c for c in preferred if c in all_opts] or all_opts[:2]
         selected = st.multiselect(
             "Choisir les séries à afficher",
-            options=numeric.columns.tolist(),
-            default=["va_construction", "consommation_ciment", "lafarge_index"],
+            options=all_opts,
+            default=default_sel,
         )
         if selected:
             fig = make_subplots(
@@ -361,7 +368,8 @@ def page_cement():
     # Side-by-side interactive comparison
     tab_raw, tab_corr, tab_zoom = st.tabs(["Série brute", "Série corrigée", "Zoom autour de la rupture"])
 
-    break_ts = pd.Timestamp(cb.break_date)
+    break_ts     = pd.Timestamp(cb.break_date)          # Timestamp for arithmetic
+    break_ts_str = break_ts.strftime("%Y-%m-%d")         # string for Plotly
 
     with tab_raw:
         fig = go.Figure()
@@ -370,8 +378,10 @@ def page_cement():
             mode="lines", name="Brut", line=dict(color=C_RED, width=1.5),
             hovertemplate="%{x|%b %Y}: %{y:,.0f}<extra></extra>",
         ))
-        fig.add_vline(x=break_ts, line_dash="dash", line_color=C_GREY,
-                      annotation_text=f"Rupture {cb.break_date}", annotation_position="top right")
+        fig.add_shape(type="line", x0=break_ts_str, x1=break_ts_str, y0=0, y1=1, yref="paper",
+                      line=dict(dash="dash", color=C_GREY))
+        fig.add_annotation(x=break_ts_str, y=1, yref="paper", text=f"Rupture {cb.break_date}",
+                           showarrow=False, xanchor="left", font=dict(color=C_GREY))
         fig.update_layout(title="Consommation ciment — BRUT (rupture ~×759 visible)",
                           xaxis_title="Date", yaxis_title="Unité brute",
                           template=PLOTLY_TEMPLATE, hovermode="x unified")
@@ -384,8 +394,11 @@ def page_cement():
             mode="lines", name="Corrigé", line=dict(color=C_BLUE, width=1.5),
             hovertemplate="%{x|%b %Y}: %{y:,.0f}<extra></extra>",
         ))
-        fig.add_vline(x=break_ts, line_dash="dash", line_color=C_GREY,
-                      annotation_text=f"Correction appliquée ×{cb.correction_factor:.0f}")
+        fig.add_shape(type="line", x0=break_ts_str, x1=break_ts_str, y0=0, y1=1, yref="paper",
+                      line=dict(dash="dash", color=C_GREY))
+        fig.add_annotation(x=break_ts_str, y=1, yref="paper",
+                           text=f"Correction ×{cb.correction_factor:.0f}",
+                           showarrow=False, xanchor="left", font=dict(color=C_GREY))
         fig.update_layout(title=f"Consommation ciment — CORRIGÉE (×{cb.correction_factor:.0f} avant {cb.break_date})",
                           xaxis_title="Date", yaxis_title="Tonnes (unité homogène)",
                           template=PLOTLY_TEMPLATE, hovermode="x unified")
@@ -403,7 +416,8 @@ def page_cement():
                              marker_color=C_ORANGE, hovertemplate="%{x|%b %Y}: %{y:,.0f}<extra></extra>"))
         fig.add_trace(go.Bar(x=post.index, y=post.values, name="Après rupture",
                              marker_color=C_RED,    hovertemplate="%{x|%b %Y}: %{y:,.0f}<extra></extra>"))
-        fig.add_vline(x=break_ts, line_dash="dash", line_color="black")
+        fig.add_shape(type="line", x0=break_ts_str, x1=break_ts_str, y0=0, y1=1, yref="paper",
+                      line=dict(dash="dash", color="black"))
         fig.update_layout(title="Zoom ±6 mois autour de la rupture (valeurs brutes)",
                           barmode="overlay", template=PLOTLY_TEMPLATE, hovermode="x unified")
         st.plotly_chart(fig, use_container_width=True)
@@ -617,10 +631,6 @@ def page_stationarity():
         from lamiaty.features.stationarity import run_stationarity_battery
         battery = run_stationarity_battery(panel.dropna(thresh=30, axis=1))
 
-    verdict_colour = {
-        "STATIONARY": C_GREEN,
-        "UNIT_ROOT": C_RED,
-    }
 
     c1, c2, c3 = st.columns(3)
     n_stat = (battery["verdict"] == "STATIONARY").sum()
@@ -682,6 +692,421 @@ def page_stationarity():
                    "Vérifier la transformation avant estimation DFM (Phase 2).")
 
 
+# ── Cached DFM loader ─────────────────────────────────────────────────────────
+
+@st.cache_resource(show_spinner="Estimation DFM en cours (peut prendre ~30s)...")
+def get_dfm():
+    from lamiaty.model.dfm import DynamicFactorModel
+    settings = get_settings()
+    panel    = get_panel()
+    _app_log.info("Fitting DFM: n_factors=%d", settings.model.n_factors)
+    dfm = DynamicFactorModel(
+        n_factors=settings.model.n_factors,
+        n_lags=settings.model.n_lags,
+        settings=settings.model,
+    )
+    dfm.fit(panel)
+    _app_log.info("DFM fitted: llf=%.2f, iter=%d",
+                  dfm.results_.log_likelihood, dfm.results_.n_iterations)
+    return dfm
+
+
+# ── Page: DFM Estimation ──────────────────────────────────────────────────────
+
+def page_dfm():
+    st.title("🎯 Estimation du Dynamic Factor Model (§4)")
+    _app_log.info("Page: Estimation DFM")
+    dfm = get_dfm()
+    res = dfm.results_
+
+    # Convergence summary
+    c1, c2, c3 = st.columns(3)
+    c1.metric("Log-vraisemblance", f"{res.log_likelihood:.1f}")
+    c2.metric("Itérations EM", res.n_iterations)
+    c3.metric("Facteurs", dfm.n_factors)
+
+    if res.n_iterations >= (dfm.settings.max_iterations if dfm.settings else 500):
+        st.warning("⚠️ L'algorithme EM n'a pas convergé dans le nombre d'itérations maximal. "
+                   "Les paramètres sont proches mais la tolérance n'est pas atteinte.")
+
+    tab_factors, tab_loadings, tab_variance = st.tabs(
+        ["📈 Facteurs communs", "🔢 Loadings (Λ)", "📊 Parts de variance"]
+    )
+
+    with tab_factors:
+        st.subheader("Facteurs latents lissés F_{t|T}")
+        factors_df = res.factors_smoothed
+        fig = go.Figure()
+        colours = [C_BLUE, C_ORANGE, C_GREEN]
+        for i, col in enumerate(factors_df.columns):
+            fig.add_trace(go.Scatter(
+                x=factors_df.index.to_timestamp() if hasattr(factors_df.index, "to_timestamp") else factors_df.index,
+                y=factors_df[col],
+                name=col,
+                line=dict(color=colours[i % len(colours)], width=2),
+            ))
+        fig.add_vrect(x0="2020-01-01", x1="2021-01-01",
+                      fillcolor="red", opacity=0.07, line_width=0,
+                      annotation_text="COVID", annotation_position="top left")
+        fig.update_layout(
+            title="Facteurs communs estimés (période d'estimation 2010-2019)",
+            xaxis_title="Date", yaxis_title="Valeur normalisée",
+            hovermode="x unified", template=PLOTLY_TEMPLATE,
+        )
+        st.plotly_chart(fig, use_container_width=True)
+        st.caption("Estimés par filtre de Kalman-EM sur la période in-sample 2010-01 à 2019-12 "
+                   "(pré-COVID). Les valeurs hors échantillon sont des prédictions de filtre.")
+
+    with tab_loadings:
+        st.subheader("Matrice des loadings Λ — contribution de chaque série à chaque facteur")
+        if res.loadings is not None:
+            loadings = res.loadings
+            fig = px.imshow(
+                loadings,
+                color_continuous_scale="RdBu",
+                color_continuous_midpoint=0,
+                aspect="auto",
+                title="Loadings Λ (séries × facteurs) — rouge = négatif, bleu = positif",
+                labels={"color": "Loading", "x": "Facteur", "y": "Série"},
+                template=PLOTLY_TEMPLATE,
+            )
+            fig.update_traces(text=loadings.round(3).values, texttemplate="%{text}")
+            st.plotly_chart(fig, use_container_width=True)
+            st.dataframe(loadings.round(4), use_container_width=True)
+        else:
+            st.info("Loadings non disponibles.")
+
+    with tab_variance:
+        st.subheader("Part de variance expliquée par les facteurs communs")
+        if res.variance_shares:
+            vs = pd.Series(res.variance_shares).sort_values(ascending=True)
+            fig = px.bar(
+                x=vs.values * 100, y=vs.index,
+                orientation="h",
+                labels={"x": "Variance expliquée (%)", "y": "Série"},
+                color=vs.values * 100,
+                color_continuous_scale=["#dbeafe", C_BLUE],
+                title="% de variance expliquée par les facteurs communs",
+                template=PLOTLY_TEMPLATE,
+            )
+            fig.update_coloraxes(showscale=False)
+            fig.add_vline(x=50, line_dash="dash", line_color=C_GREY,
+                          annotation_text="50%", annotation_position="top right")
+            st.plotly_chart(fig, use_container_width=True)
+
+
+# ── Page: Nowcast ─────────────────────────────────────────────────────────────
+
+def page_nowcast():
+    st.title("🔮 Nowcast — VA Construction")
+    _app_log.info("Page: Nowcast")
+    dfm   = get_dfm()
+    panel = get_panel()
+
+    nc = dfm.nowcast(panel)
+    if len(nc) == 0:
+        st.error("Aucune prédiction disponible.")
+        return
+
+    # Current nowcast
+    last_q   = nc.index[-1]
+    last_val = float(nc.iloc[-1])
+    prev_val = float(nc.iloc[-2]) if len(nc) > 1 else None
+    delta    = f"{(last_val - prev_val):+.1f} MDH" if prev_val else None
+
+    st.metric(
+        label=f"Nowcast VA Construction — {last_q}",
+        value=f"{last_val:,.0f} MDH",
+        delta=delta,
+    )
+
+    # Observed + Nowcast with CI
+    raw       = get_raw_df()
+    va_obs    = raw["va_construction"].dropna()
+
+    ci_lower  = nc.attrs.get("ci_lower", pd.Series(dtype=float))
+    ci_upper  = nc.attrs.get("ci_upper", pd.Series(dtype=float))
+
+    # Convert period index to timestamp if needed
+    def _to_ts(idx):
+        if hasattr(idx, "to_timestamp"):
+            return idx.to_timestamp()
+        return idx
+
+    nc_idx = _to_ts(nc.index)
+    ci_lo_idx = _to_ts(ci_lower.index) if len(ci_lower) > 0 else nc_idx
+    ci_hi_idx = _to_ts(ci_upper.index) if len(ci_upper) > 0 else nc_idx
+
+    fig = go.Figure()
+
+    # 90% CI band
+    if len(ci_lower) > 0 and len(ci_upper) > 0:
+        x_band = list(ci_lo_idx) + list(ci_hi_idx[::-1])
+        y_band = list(ci_lower.values) + list(ci_upper.values[::-1])
+        fig.add_trace(go.Scatter(
+            x=x_band, y=y_band, fill="toself",
+            fillcolor="rgba(37,99,235,0.12)", line=dict(width=0),
+            name="IC 90%", showlegend=True,
+        ))
+
+    # Nowcast line
+    fig.add_trace(go.Scatter(
+        x=nc_idx, y=nc.values,
+        mode="lines+markers", name="Nowcast DFM",
+        line=dict(color=C_BLUE, width=2, dash="dot"),
+        marker=dict(size=5),
+    ))
+
+    # Observed data (scatter)
+    fig.add_trace(go.Scatter(
+        x=va_obs.index, y=va_obs.values,
+        mode="markers", name="Observé (HCP)",
+        marker=dict(color=C_GREEN, size=6),
+    ))
+
+    fig.add_vrect(x0="2020-01-01", x1="2021-01-01",
+                  fillcolor="red", opacity=0.07, line_width=0,
+                  annotation_text="COVID", annotation_position="top left")
+    fig.update_layout(
+        title="Nowcast VA Construction vs Observé — DFM k=2",
+        xaxis_title="Date", yaxis_title="MDH (prix courants)",
+        hovermode="x unified", template=PLOTLY_TEMPLATE,
+        legend=dict(orientation="h", yanchor="bottom", y=1.02),
+    )
+    st.plotly_chart(fig, use_container_width=True)
+
+    # Nowcast table
+    st.divider()
+    st.subheader("Tableau du nowcast (derniers trimestres)")
+    nc_df = pd.DataFrame({
+        "Quarter":   [str(i) for i in nc_idx[-8:]],
+        "Nowcast":   nc.iloc[-8:].round(0).values,
+        "IC lower":  ci_lower.reindex(nc.index[-8:]).round(0).values if len(ci_lower) > 0 else ["—"] * 8,
+        "IC upper":  ci_upper.reindex(nc.index[-8:]).round(0).values if len(ci_upper) > 0 else ["—"] * 8,
+    })
+    st.dataframe(nc_df, hide_index=True, use_container_width=True)
+
+    st.info("ℹ️ Le nowcast est basé sur un DFM estimé sur la période 2010–2019 (pré-COVID). "
+            "Phase 2 complète. Phase 3 (backtesting) disponible dans l'onglet suivant.")
+
+
+# ── Page: Backtesting ─────────────────────────────────────────────────────────
+
+def page_backtest():
+    st.title("📉 Backtesting pseudo-temps réel (§5)")
+    _app_log.info("Page: Backtesting")
+
+    settings = get_settings()
+    panel    = get_panel()
+
+    from lamiaty.backtest.runner import load_backtest_results
+
+    # Try to load cached results
+    cached = load_backtest_results(settings.paths.vintages_dir)
+
+    st.info(
+        "Le backtesting itère sur ~240 origines de prévision (2015–2024, 7ème et 21ème "
+        "de chaque mois). Chaque origine requiert un ré-estimation complète du DFM. "
+        "Cliquer sur **Lancer le backtest** pour démarrer (peut prendre plusieurs minutes)."
+    )
+
+    col1, col2 = st.columns([1, 3])
+    run_button = col1.button("▶ Lancer le backtest", type="primary")
+
+    if run_button:
+        with st.spinner("Backtest en cours…"):
+            from lamiaty.backtest.runner import run_backtest
+            cached = run_backtest(settings, panel, save_vintages=False)
+            st.success(f"Backtest terminé : {len(cached)} origines évaluées.")
+
+    if cached is None:
+        st.warning("Aucun résultat de backtest disponible. Cliquez sur 'Lancer le backtest'.")
+        return
+
+    # Filter to rows with valid nowcast and realized
+    results = cached.dropna(subset=["nowcast", "realized"])
+
+    if len(results) == 0:
+        st.warning("Pas assez de données réalisées pour évaluer les métriques.")
+        return
+
+    tab_perf, tab_chart, tab_dm = st.tabs(
+        ["📊 Performance", "📈 Nowcast vs Réalisé", "🧪 Diebold-Mariano"]
+    )
+
+    with tab_perf:
+        from lamiaty.backtest.evaluator import (
+            compute_rmsfe, compute_mafe, compute_theil_u, diebold_mariano,
+            benchmark_random_walk, benchmark_ar1,
+        )
+        nc   = results.set_index("target_quarter")["nowcast"]
+        real = results.set_index("target_quarter")["realized"]
+
+        rw   = benchmark_random_walk(real)
+        ar1b = benchmark_ar1(real)
+
+        perf_data = []
+        for name, bench in [("DFM", nc), ("Random Walk", rw), ("AR(1)", ar1b)]:
+            perf_data.append({
+                "Modèle": name,
+                "RMSFE":  f"{compute_rmsfe(bench, real):,.1f}" if name != "DFM" else f"{compute_rmsfe(nc, real):,.1f}",
+                "MAFE":   f"{compute_mafe(bench, real):,.1f}",
+                "Theil U": f"{compute_theil_u(nc if name == 'DFM' else bench, real, rw):.3f}",
+            })
+        st.dataframe(pd.DataFrame(perf_data), hide_index=True, use_container_width=True)
+
+    with tab_chart:
+        st.subheader("Nowcast vs Valeurs réalisées")
+        fig = make_subplots(rows=2, cols=1, shared_xaxes=True,
+                            subplot_titles=["Nowcast vs Réalisé", "Erreur de prévision"],
+                            vertical_spacing=0.08)
+
+        fig.add_trace(go.Scatter(x=results["origin"], y=results["realized"],
+                                 mode="markers+lines", name="Réalisé",
+                                 line=dict(color=C_GREEN, width=1.5)), row=1, col=1)
+        fig.add_trace(go.Scatter(x=results["origin"], y=results["nowcast"],
+                                 mode="markers", name="Nowcast DFM",
+                                 marker=dict(color=C_BLUE, size=5)), row=1, col=1)
+        fig.add_trace(go.Bar(x=results["origin"], y=results["error"],
+                             name="Erreur", marker_color=C_ORANGE), row=2, col=1)
+        fig.add_hline(y=0, line_dash="dash", line_color=C_GREY, row=2, col=1)
+
+        fig.update_layout(hovermode="x unified", template=PLOTLY_TEMPLATE,
+                          height=500, showlegend=True)
+        st.plotly_chart(fig, use_container_width=True)
+
+    with tab_dm:
+        st.subheader("Test de Diebold-Mariano vs benchmarks")
+        from lamiaty.backtest.evaluator import diebold_mariano, benchmark_random_walk, benchmark_ar1
+        nc   = results.set_index("target_quarter")["nowcast"]
+        real = results.set_index("target_quarter")["realized"]
+        e_dfm = nc - real
+
+        dm_rows = []
+        for bench_name, bench in [("Random Walk", benchmark_random_walk(real)),
+                                   ("AR(1)", benchmark_ar1(real))]:
+            e_b = bench - real
+            dm  = diebold_mariano(e_dfm.dropna(), e_b.dropna())
+            sig = "✅ Significatif" if dm["pvalue"] < 0.05 else "—"
+            dm_rows.append({
+                "Benchmark": bench_name,
+                "DM statistic": f"{dm['statistic']:.3f}" if not pd.isna(dm["statistic"]) else "N/A",
+                "p-value": f"{dm['pvalue']:.4f}" if not pd.isna(dm["pvalue"]) else "N/A",
+                "Significatif (5%)": sig,
+                "n_obs": dm["n_obs"],
+            })
+
+        dm_df = pd.DataFrame(dm_rows)
+
+        def _style_sig(row):
+            return ["background-color: #dcfce7" if row["Significatif (5%)"] == "✅ Significatif"
+                    else "" for _ in row]
+
+        st.dataframe(dm_df.style.apply(_style_sig, axis=1),
+                     hide_index=True, use_container_width=True)
+        st.caption("H0 : précision prévisionnelle égale. DM < 0 → DFM meilleur que benchmark.")
+
+
+# ── Page: News decomposition ──────────────────────────────────────────────────
+
+def page_news():
+    st.title("📰 Décomposition news — Attribution des révisions")
+    _app_log.info("Page: News decomposition")
+
+    dfm   = get_dfm()
+    panel = get_panel()
+    raw   = get_raw_df()
+
+    st.markdown(
+        "Décompose la **révision du nowcast** entre deux mises à jour en contributions "
+        "par série — quelle publication a le plus impacté la dernière révision ?  \n"
+        "Équation (11) de Danov et al. (2026) : **révision = Σ poids × news**"
+    )
+
+    # Let user pick the 'previous' information cutoff
+    va_obs = raw["va_construction"].dropna()
+    q_dates = sorted(va_obs.index.tolist(), reverse=True)
+
+    if len(q_dates) < 2:
+        st.warning("Pas assez de données pour la décomposition news.")
+        return
+
+    st.subheader("Simuler une révision entre deux mises à jour")
+    c1, c2 = st.columns(2)
+    prev_date = c1.selectbox(
+        "Information set précédent (Ω_prev)",
+        options=q_dates[1:],
+        format_func=lambda d: d.strftime("%Y-%m"),
+        index=0,
+        key="news_prev",
+    )
+    new_date = c2.selectbox(
+        "Information set nouveau (Ω_new)",
+        options=[d for d in q_dates if d > prev_date],
+        format_func=lambda d: d.strftime("%Y-%m"),
+        index=0,
+        key="news_new",
+    )
+
+    if st.button("Calculer la décomposition news", type="primary"):
+        panel_prev = panel.loc[:prev_date]
+        panel_new  = panel.loc[:new_date]
+
+        with st.spinner("Calcul de la décomposition news…"):
+            try:
+                news_df = dfm.news_decomposition(panel_prev, panel_new)
+                st.success(f"Révision totale : {news_df.loc[news_df['series'] == 'TOTAL', 'contribution'].iloc[0]:+.2f} MDH")
+            except Exception as exc:
+                st.error(f"Erreur : {exc}")
+                _app_log.error("News decomposition failed: %s", exc, exc_info=True)
+                return
+
+        # Filter out TOTAL for chart
+        detail = news_df[news_df["series"] != "TOTAL"].copy()
+        total  = news_df[news_df["series"] == "TOTAL"]["contribution"].iloc[0]
+
+        # Waterfall chart
+        st.subheader("Graphique en cascade — contributions par publication")
+        measures = ["relative"] * len(detail) + ["total"]
+        x_labels = [f"{r['series']} ({pd.Timestamp(r['update_date']).strftime('%Y-%m') if pd.notna(r['update_date']) else ''})"
+                    for _, r in detail.iterrows()] + ["TOTAL"]
+        y_values = list(detail["contribution"].values) + [total]
+        text_vals = [f"{v:+.2f}" for v in y_values]
+
+        fig = go.Figure(go.Waterfall(
+            orientation="v",
+            measure=measures,
+            x=x_labels,
+            y=y_values,
+            text=text_vals,
+            textposition="outside",
+            connector={"line": {"color": C_GREY}},
+            increasing={"marker": {"color": C_BLUE}},
+            decreasing={"marker": {"color": C_RED}},
+            totals={"marker": {"color": C_GREEN}},
+        ))
+        fig.update_layout(
+            title=f"Décomposition news : {prev_date.strftime('%Y-Q%q')} → {new_date.strftime('%Y-Q%q')}",
+            yaxis_title="Contribution (MDH)",
+            template=PLOTLY_TEMPLATE,
+            showlegend=False,
+        )
+        st.plotly_chart(fig, use_container_width=True)
+
+        # Details table
+        st.subheader("Détail des contributions")
+        display_df = news_df.copy()
+        display_df["update_date"] = display_df["update_date"].apply(
+            lambda x: x.strftime("%Y-%m") if pd.notna(x) else "—"
+        )
+        st.dataframe(
+            display_df.style.format({"news": "{:.4f}", "weight": "{:.4f}", "contribution": "{:.4f}"}, na_rep="—"),
+            hide_index=True, use_container_width=True,
+        )
+    else:
+        st.info("Sélectionner deux dates et cliquer sur **Calculer la décomposition news**.")
+
+
 # ── Router ────────────────────────────────────────────────────────────────────
 
 _ROUTERS = {
@@ -691,6 +1116,10 @@ _ROUTERS = {
     "investissement": page_investissement,
     "pipeline":     page_pipeline,
     "stationarity": page_stationarity,
+    "dfm":          page_dfm,
+    "nowcast":      page_nowcast,
+    "backtest":     page_backtest,
+    "news":         page_news,
 }
 
 _ROUTERS[page]()
