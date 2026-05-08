@@ -28,6 +28,8 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
+from lamiaty.utils.logging import log_stage
+from lamiaty.utils.cleaning import clean_nowcasting_panel, get_golden_features
 from plotly.subplots import make_subplots
 
 logger = logging.getLogger("lamiaty.ml_models")
@@ -47,6 +49,7 @@ MODEL_COLORS = {
     "AR(1)": C_ORANGE,
     "Random Walk": C_GREY,
     "DFM": C_TEAL,
+    "Elastic Net": "#059669",
 }
 
 
@@ -62,19 +65,17 @@ def _quarter_label(dt: pd.Timestamp) -> str:
     return f"{dt.year}-Q{dt.quarter}"
 
 
-@st.cache_data(show_spinner="Préparation des données ML…")
-def _prepare_ml_data(panel_hash: int, _panel: pd.DataFrame, freq: str = "Q") -> dict[str, Any]:
+@st.cache_data(show_spinner="Préparation des données ML...")
+def _prepare_ml_data(
+    panel_hash: int, 
+    _panel: pd.DataFrame, 
+    freq: str = "Q", 
+    selected_features: list[str] | None = None
+) -> dict[str, Any]:
     """
     Prépare X, y pour les modèles ML.
-
-    Logique :
-      - Cible : va_construction déjà transformée dans le pipeline
-      - Exclusion des variables instables
-      - Agrégation trimestrielle des features
-      - Lags t-1 et t-2
-      - Filtre corrélation sur le train
-      - Sélection LASSO sur le train
-      - Split chronologique 70/30
+    Si selected_features est fourni, utilise ces colonnes directement.
+    Sinon, utilise le pipeline automatique (lags + Lasso).
     """
     from sklearn.linear_model import LassoCV
     from sklearn.preprocessing import StandardScaler
@@ -85,10 +86,40 @@ def _prepare_ml_data(panel_hash: int, _panel: pd.DataFrame, freq: str = "Q") -> 
         raise ValueError(f"Cible '{target}' absente du panel.")
 
     panel = _panel.copy().sort_index()
+    resample_rule = "QE" if freq == "Q" else "ME"
 
-    if not isinstance(panel.index, pd.DatetimeIndex):
-        raise TypeError("Le panel doit avoir un DatetimeIndex.")
+    if selected_features:
+        # ── Cas : Features spécifiées manuellement ────────────────────────
+        q = panel[selected_features].resample(resample_rule).mean()
+        
+        if freq == "Q":
+            y = panel[target].dropna().resample(resample_rule).last().dropna()
+        else:
+            y = panel[target].resample(resample_rule).last().interpolate(method="linear").dropna()
+        
+        y.name = target
+        model_df = pd.concat([q, y], axis=1).dropna()
+        
+        if model_df.empty:
+            raise ValueError("Aucune observation après alignement des features manuelles.")
+            
+        split = int(len(model_df) * 0.70)
+        X = model_df[selected_features]
+        y = model_df[target]
+        
+        return {
+            "X_train": X.iloc[:split].values,
+            "X_test": X.iloc[split:].values,
+            "y_train": y.iloc[:split].values,
+            "y_test": y.iloc[split:].values,
+            "dates_train": y.index[:split],
+            "dates_test": y.index[split:],
+            "feature_names": selected_features,
+            "target_series": y,
+            "model_df": model_df,
+        }
 
+    # ── Cas : Pipeline automatique (legacy) ───────────────────────────────
     # Variables exclues temporairement (y compris les cibles pour éviter la fuite de données)
     excluded = {
         target,
@@ -267,6 +298,46 @@ def compute_metrics(y_true: np.ndarray, y_pred: np.ndarray, model_name: str) -> 
 
 # ── Model trainers ─────────────────────────────────────────────────────────────
 
+@st.cache_data(show_spinner="Entraînement Elastic Net...")
+def train_elastic_net(X_train, X_test, y_train, y_test, feature_names):
+    from sklearn.linear_model import ElasticNetCV
+    from sklearn.metrics import r2_score
+    
+    with log_stage("Training Elastic Net", "lamiaty.ml_models"):
+        model = ElasticNetCV(
+            l1_ratio=[.1, .5, .7, .9, .95, .99, 1],
+            cv=5,
+            max_iter=10000,
+            random_state=42
+        )
+        model.fit(X_train, y_train)
+        
+        y_pred = model.predict(X_test)
+        y_train_pred = model.predict(X_train)
+        
+        return {
+            "model": model,
+            "y_pred": y_pred,
+            "y_train_pred": y_train_pred,
+            "test_metrics": {
+                "RMSE": rmse(y_test, y_pred),
+                "MAPE": mape(y_test, y_pred),
+                "MAE": mae(y_test, y_pred),
+                "R²": r2_score(y_test, y_pred),
+            },
+            "train_metrics": {
+                "RMSE": rmse(y_train, y_train_pred),
+                "MAPE": mape(y_train, y_train_pred),
+                "MAE": mae(y_train, y_train_pred),
+                "R²": r2_score(y_train, y_train_pred),
+            },
+            "best_params": {
+                "alpha": model.alpha_,
+                "l1_ratio": model.l1_ratio_
+            },
+            "feature_importances": model.coef_
+        }
+
 @st.cache_data(show_spinner="Entraînement Random Forest…")
 def train_random_forest(
     _X_train, _y_train, _X_test, _y_test,
@@ -426,6 +497,95 @@ def train_lstm(
         logger.exception("LSTM training failed")
         return {"error": str(exc)}
 
+@st.cache_data(show_spinner="Entraînement SARIMAX…")
+def train_sarima(
+    _X_train, _y_train, _X_test, _y_test,
+    order: tuple[int, int, int] = (1, 0, 0),
+    seasonal_order: tuple[int, int, int, int] = (0, 0, 0, 0),
+) -> dict[str, Any]:
+    try:
+        from statsmodels.tsa.statespace.sarimax import SARIMAX
+        import numpy as np
+
+        exog_train = np.asarray(_X_train, dtype=float) if _X_train is not None and len(_X_train) > 0 else None
+        exog_test = np.asarray(_X_test, dtype=float) if _X_test is not None and len(_X_test) > 0 else None
+        endog = np.asarray(_y_train, dtype=float)
+
+        model = SARIMAX(
+            endog,
+            exog=exog_train,
+            order=order,
+            seasonal_order=seasonal_order,
+            enforce_stationarity=False,
+            enforce_invertibility=False
+        )
+        res = model.fit(disp=False)
+        
+        pred_train = res.predict(start=0, end=len(endog)-1, exog=exog_train)
+        pred_test = res.forecast(steps=len(_y_test), exog=exog_test)
+
+        return {
+            "train_metrics": compute_metrics(_y_train, pred_train, "SARIMAX (train)"),
+            "test_metrics": compute_metrics(_y_test, pred_test, "SARIMAX"),
+            "pred_train": pred_train,
+            "pred_test": pred_test,
+            "summary": res.summary().as_text(),
+            "model_name": f"SARIMA{order}{seasonal_order}" if sum(seasonal_order) > 0 else f"ARIMA{order}",
+        }
+    except ImportError:
+        return {"error": "statsmodels non installé."}
+    except Exception as exc:
+        logger.exception("SARIMAX training failed")
+        return {"error": str(exc)}
+
+def _render_ts_predictions(res_dict: dict[str, Any], dates_train, y_train, dates_test, y_test, model_name: str, color: str = C_BLUE) -> None:
+    m = res_dict["test_metrics"]
+    col1, col2, col3, col4 = st.columns(4)
+    is_growth = np.nanmean(np.abs(y_test)) < 2.0
+    u = "pts" if is_growth else "MDH"
+    f_val = ".4f" if is_growth else ",.0f"
+    
+    col1.metric("RMSE", f"{m['RMSE']:{f_val}} {u}" if not np.isnan(m['RMSE']) else "N/A")
+    col2.metric("MAPE (%)", f"{m['MAPE']:.1f} %" if not np.isnan(m['MAPE']) else "N/A")
+    col3.metric("MAE", f"{m['MAE']:{f_val}} {u}" if not np.isnan(m['MAE']) else "N/A")
+    col4.metric("R²", f"{m['R²']:.3f}" if not np.isnan(m['R²']) else "N/A")
+
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(
+        x=dates_test, y=y_test,
+        mode="markers+lines", name="Réalisé",
+        hovertemplate="%{x|%Y-%m-%d}: %{y:,.3f}<extra></extra>",
+        line=dict(color=C_GREEN, width=1.5),
+    ))
+    
+    p_te = res_dict["pred_test"]
+    p_tr = res_dict["pred_train"]
+    n_te = min(len(dates_test), len(p_te))
+    n_tr = min(len(dates_train), len(p_tr))
+
+    fig.add_trace(go.Scatter(
+        x=dates_test[:n_te], y=p_te[:n_te],
+        mode="lines", name=f"{model_name} — Prédiction",
+        line=dict(color=color, width=2, dash="dot"),
+    ))
+    fig.add_trace(go.Scatter(
+        x=dates_train[:n_tr], y=p_tr[:n_tr],
+        mode="lines", name=f"{model_name} — In-sample",
+        line=dict(color=C_GREY, width=1, dash="dash"),
+    ))
+    if len(dates_test) > 0:
+        fig.add_vline(
+            x=dates_test[0].timestamp() * 1000,
+            line_width=1, line_dash="dash",
+            annotation_text="Train | Test", annotation_position="top",
+        )
+    fig.update_layout(
+        title=f"{model_name} — Prédictions vs Réalisé",
+        xaxis_title="Date", yaxis_title="Valeur",
+        hovermode="x unified", template=PLOTLY_TEMPLATE,
+        legend=dict(orientation="h", yanchor="top"),
+    )
+    st.plotly_chart(fig, width="stretch")
 
 # ── Page ───────────────────────────────────────────────────────────────────────
 
@@ -460,7 +620,29 @@ def page_ml_models() -> None:
 
             settings = load_settings()
             panel = run_pipeline(settings)
-            data = _prepare_ml_data(hash(str(panel.shape) + freq), panel, freq=freq)
+            
+            # ── 1. Preparation du Panel ──────────────────────────────────────────
+            # Applique le pipeline de nettoyage (Winsorisation, Lissage, Dummies)
+            panel = clean_nowcasting_panel(panel)
+            golden_features = get_golden_features(panel)
+
+            st.sidebar.markdown("---")
+            model_type = st.sidebar.selectbox(
+                "Choisir un modèle",
+                ["Comparaison", "Elastic Net", "Random Forest", "LSTM", "ARIMA", "ARMA", "SARIMA"]
+            )
+            feature_names = st.sidebar.multiselect(
+                "Indicateurs (X)",
+                options=list(panel.columns),
+                default=golden_features
+            )
+
+            data = _prepare_ml_data(
+                hash(str(panel.shape) + freq + str(feature_names)), 
+                panel, 
+                freq=freq,
+                selected_features=feature_names
+            )
         except Exception as exc:
             st.error(f"❌ Erreur critique : Impossible de charger les données réelles du pipeline. Détail : {exc}")
             st.stop()
@@ -498,9 +680,39 @@ def page_ml_models() -> None:
 
     st.divider()
 
-    tab_rf, tab_lstm, tab_compare, tab_metrics, tab_errors = st.tabs(
-        ["🌲 Random Forest", "🧠 LSTM", "📊 Comparaison", "📐 Métriques", "🔍 Résidus"]
+    tab_en, tab_rf, tab_lstm, tab_arima, tab_arma, tab_sarima, tab_compare, tab_metrics, tab_errors = st.tabs(
+        ["📈 Elastic Net", "🌲 Random Forest", "🧠 LSTM", "📈 ARIMA", "📉 ARMA", "❄️ SARIMA", "📊 Comparaison", "📐 Métriques", "🔍 Résidus"]
     )
+
+    # ── Elastic Net ──────────────────────────────────────────────────────────
+    with tab_en:
+        st.subheader("📈 Elastic Net Regressor")
+        st.markdown(
+            "Régression linéaire régularisée (L1+L2). **Idéal pour les petits échantillons** "
+            "car il évite le sur-apprentissage en sélectionnant les variables les plus stables."
+        )
+        en_res = train_elastic_net(X_train, X_test, y_train, y_test, feature_names)
+        
+        if "error" in en_res:
+            st.error(en_res["error"])
+        else:
+            m = en_res["test_metrics"]
+            col1, col2, col3, col4 = st.columns(4)
+            is_growth = np.nanmean(np.abs(y_test)) < 2.0
+            u = "pts" if is_growth else "MDH"
+            f_val = ".4f" if is_growth else ",.0f"
+            
+            col1.metric("RMSE", f"{m['RMSE']:{f_val}} {u}")
+            col2.metric("MAPE (%)", f"{m['MAPE']:.1f} %")
+            col3.metric("MAE", f"{m['MAE']:{f_val}} {u}")
+            col4.metric("R²", f"{m['R2']:.3f}")
+
+            # Plot prediction
+            fig = go.Figure()
+            fig.add_trace(go.Scatter(x=dates_test, y=y_test, mode="markers+lines", name="Réalisé", line=dict(color=C_GREEN)))
+            fig.add_trace(go.Scatter(x=dates_test, y=en_res["y_pred"], mode="lines", name="EN — Test", line=dict(color=C_BLUE, dash="dot")))
+            fig.update_layout(title="Elastic Net — Prédictions", template=PLOTLY_TEMPLATE)
+            st.plotly_chart(fig, use_container_width=True)
 
     # ── Random Forest ─────────────────────────────────────────────────────────
     with tab_rf:
@@ -709,6 +921,67 @@ def page_ml_models() -> None:
                 else:
                     st.info("Courbe de perte non disponible (mode simulation).")
 
+    # ── ARIMA ─────────────────────────────────────────────────────────────────
+    with tab_arima:
+        st.subheader("📈 Modèle ARIMA (ARIMAX)")
+        st.markdown("AutoRegressive Integrated Moving Average avec variables exogènes.")
+        with st.expander("⚙️ Hyperparamètres ARIMA"):
+            c1, c2, c3 = st.columns(3)
+            p_ar = c1.number_input("p (Lags AR)", 0, 10, 1, key="ari_p")
+            d_ar = c2.number_input("d (Différenciation)", 0, 2, 0, key="ari_d")
+            q_ar = c3.number_input("q (Lags MA)", 0, 10, 1, key="ari_q")
+        
+        arima_res = train_sarima(X_train, y_train, X_test, y_test, order=(p_ar, d_ar, q_ar))
+        
+        if "error" in arima_res:
+            st.error(arima_res["error"])
+        else:
+            _render_ts_predictions(arima_res, dates_train, y_train, dates_test, y_test, "ARIMA")
+            with st.expander("📄 Summary du modèle"):
+                st.text(arima_res["summary"])
+
+    # ── ARMA ──────────────────────────────────────────────────────────────────
+    with tab_arma:
+        st.subheader("📉 Modèle ARMA (ARMAX)")
+        st.markdown("AutoRegressive Moving Average (sans différenciation).")
+        with st.expander("⚙️ Hyperparamètres ARMA"):
+            c1, c2 = st.columns(2)
+            p_arma = c1.number_input("p (Lags AR)", 0, 10, 1, key="arm_p")
+            q_arma = c2.number_input("q (Lags MA)", 0, 10, 1, key="arm_q")
+        
+        arma_res = train_sarima(X_train, y_train, X_test, y_test, order=(p_arma, 0, q_arma))
+        if "error" in arma_res:
+            st.error(arma_res["error"])
+        else:
+            _render_ts_predictions(arma_res, dates_train, y_train, dates_test, y_test, "ARMA", color=C_ORANGE)
+            with st.expander("📄 Summary du modèle"):
+                st.text(arma_res["summary"])
+
+    # ── SARIMA ────────────────────────────────────────────────────────────────
+    with tab_sarima:
+        st.subheader("❄️ Modèle SARIMA (SARIMAX)")
+        st.markdown("Seasonal ARIMA pour capter la saisonnalité.")
+        with st.expander("⚙️ Hyperparamètres SARIMA"):
+            st.write("Ordre classique (p,d,q)")
+            c1, c2, c3 = st.columns(3)
+            sp = c1.number_input("p", 0, 5, 1, key="s_p")
+            sd = c2.number_input("d", 0, 2, 0, key="s_d")
+            sq = c3.number_input("q", 0, 5, 1, key="s_q")
+            st.write("Ordre saisonnier (P,D,Q,s)")
+            c4, c5, c6, c7 = st.columns(4)
+            sP = c4.number_input("P", 0, 5, 1, key="s_sP")
+            sD = c5.number_input("D", 0, 2, 0, key="s_sD")
+            sQ = c6.number_input("Q", 0, 5, 0, key="s_sQ")
+            s_s = c7.number_input("s (Période)", 0, 12, 4 if freq=="Q" else 12, key="s_s")
+            
+        sarima_res = train_sarima(X_train, y_train, X_test, y_test, order=(sp, sd, sq), seasonal_order=(sP, sD, sQ, s_s))
+        if "error" in sarima_res:
+            st.error(sarima_res["error"])
+        else:
+            _render_ts_predictions(sarima_res, dates_train, y_train, dates_test, y_test, "SARIMA", color=C_TEAL)
+            with st.expander("📄 Summary du modèle"):
+                st.text(sarima_res["summary"])
+
     # ── Comparaison ───────────────────────────────────────────────────────────
     with tab_compare:
         st.subheader("📊 Comparaison haute vue — tous les modèles")
@@ -720,14 +993,23 @@ def page_ml_models() -> None:
         preds: dict[str, np.ndarray] = {}
         dates_ref = dates_test
 
+        if "y_pred" in en_res and "error" not in en_res:
+            preds["Elastic Net"] = en_res["y_pred"]
+
         if "pred_test" in rf_res and "error" not in rf_res:
             preds["Random Forest"] = rf_res["pred_test"]
 
         if "pred_test" in lstm_res and "error" not in lstm_res:
-            dates_ref_lstm = dates_test[lb:] if len(dates_test) > lb else dates_test
-            p = lstm_res["pred_test"]
-            n_te = min(len(dates_ref_lstm), len(p))
-            preds["LSTM"] = p[:n_te]
+            preds["LSTM"] = lstm_res["pred_test"]
+            
+        if "pred_test" in arima_res and "error" not in arima_res:
+            preds["ARIMA"] = arima_res["pred_test"]
+            
+        if "pred_test" in arma_res and "error" not in arma_res:
+            preds["ARMA"] = arma_res["pred_test"]
+            
+        if "pred_test" in sarima_res and "error" not in sarima_res:
+            preds["SARIMA"] = sarima_res["pred_test"]
 
         try:
             from statsmodels.tsa.ar_model import AutoReg
@@ -912,7 +1194,7 @@ def page_ml_models() -> None:
         )
 
         all_metrics = []
-        for name, res in [("Random Forest", rf_res), ("LSTM", lstm_res)]:
+        for name, res in [("Elastic Net", en_res), ("Random Forest", rf_res), ("LSTM", lstm_res), ("ARIMA", arima_res), ("ARMA", arma_res), ("SARIMA", sarima_res)]:
             if "error" in res:
                 continue
             tr = res.get("train_metrics", {})
@@ -937,7 +1219,7 @@ def page_ml_models() -> None:
 
         st.subheader("⚖️ Détection du sur-apprentissage (RMSE train vs test)")
         overfit_rows = []
-        for name, res in [("Random Forest", rf_res), ("LSTM", lstm_res)]:
+        for name, res in [("Elastic Net", en_res), ("Random Forest", rf_res), ("LSTM", lstm_res), ("ARIMA", arima_res), ("ARMA", arma_res), ("SARIMA", sarima_res)]:
             if "error" in res:
                 continue
             tr_m = res.get("train_metrics", {})
@@ -965,8 +1247,15 @@ def page_ml_models() -> None:
         st.caption("Diagnostics des erreurs de prévision par modèle.")
 
         models_for_diag = {
-            name: res for name, res in [("Random Forest", rf_res), ("LSTM", lstm_res)]
-            if "pred_test" in res and "error" not in res
+            name: res for name, res in [
+                ("Elastic Net", en_res), 
+                ("Random Forest", rf_res), 
+                ("LSTM", lstm_res),
+                ("ARIMA", arima_res),
+                ("ARMA", arma_res),
+                ("SARIMA", sarima_res)
+            ]
+            if ("pred_test" in res or "y_pred" in res) and "error" not in res
         }
         if not models_for_diag:
             st.info("Aucun modèle disponible pour le diagnostic.")
@@ -1068,3 +1357,5 @@ def page_ml_models() -> None:
     st.caption(
         "📚 Références : Breiman (2001) Random Forests — Hochreiter & Schmidhuber (1997) LSTM"
     )
+
+

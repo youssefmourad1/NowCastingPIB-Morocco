@@ -109,6 +109,9 @@ class DynamicFactorModel:
 
         s = self.settings
 
+        # ── 0. Exclude target-derived columns for ML ───────────────────────
+        panel = panel.drop(columns=["va_construction_yoy"], errors="ignore")
+
         # ── 1. Split monthly vs quarterly columns ──────────────────────────
         quarterly_cols = (
             [c for c in (s.mixed_frequency.quarterly_series or []) if c in panel.columns]
@@ -455,10 +458,10 @@ class DynamicFactorModel:
 
      return result
 
-    def nowcast_last(self, panel: pd.DataFrame) -> pd.Series:
-        """Nowcast du dernier trimestre uniquement."""
+    def nowcast(self, panel: pd.DataFrame) -> pd.Series:
+        """Nowcast of the latest available quarters."""
         if not self._is_fitted:
-            raise RuntimeError("Call fit() before nowcast_last().")
+            raise RuntimeError("Call fit() before nowcast().")
 
         va_col = "va_construction"
 
@@ -492,9 +495,7 @@ class DynamicFactorModel:
         ci_lower = ci[f"lower {va_col}"].reindex(va_pred.index)
         ci_upper = ci[f"upper {va_col}"].reindex(va_pred.index)
 
-        result = va_pred.rename("nowcast_last")
+        result = va_pred.rename("nowcast")
         result.attrs["ci_lower"] = ci_lower
         result.attrs["ci_upper"] = ci_upper
-        print(">>> NOWCAST_LAST IS RUNNING <<<")
-        logger.warning(">>> NOWCAST_LAST IS RUNNING <<<")
         return result
