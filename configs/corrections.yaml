@@ -16,16 +16,28 @@ cement_break:
     périmètre APC. Contacter APC pour documentation officielle avant validation.
 
 investissement_etat:
-  treatment: monthly_diff         # monthly_diff | keep_as_is
-  # monthly_diff: applies .diff(1) to convert suspected YTD cumulative to monthly flow
-  # keep_as_is: no transformation (triggers a UserWarning at runtime)
-  confirmed_by: null              # Set to "TGR" or analyst name when confirmed
+  treatment: ytd_to_monthly_flow
+  # ytd_to_monthly_flow:
+  #   Convertit une série cumulée (YTD) en flux mensuels cohérents :
+  #   - Janvier = valeur de janvier
+  #   - Mois t = cumul_t - cumul_{t-1} dans la même année
+  #   → évite les ruptures artificielles entre décembre et janvier
+
+  confirmed_by: null
+
   notes: >
-    Valeurs systématiquement très négatives en janvier de chaque année
-    (ex: -53 272 MDH en jan 2019). Hypothèse : cumul YTD de l'exécution budgétaire.
-    Confirmer définition exacte avec TGR/MEF avant utilisation dans le DFM.
-    La série est exclue du modèle (include_in_model: false dans data_sources.yaml)
-    tant que la définition n'est pas confirmée.
+    La série présente des valeurs fortement négatives en janvier,
+    indiquant très probablement une structure en cumul annuel (YTD)
+    qui se réinitialise en début d'année.
+
+    La transformation ytd_to_monthly_flow est appliquée pour convertir
+    cette série en flux mensuels économiquement cohérents.
+
+    Contrairement à monthly_diff, cette méthode évite les biais liés à la
+    différence entre décembre (année t-1) et janvier (année t).
+
+    Cette transformation est retenue comme hypothèse de travail en attendant
+    validation officielle par la TGR ou le MEF.
 
 lafarge_string_fix:
   strip_commas: true              # Remove thousands separator commas ("1,612" → 1612.0)

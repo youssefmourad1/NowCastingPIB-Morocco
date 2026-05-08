@@ -141,21 +141,31 @@ class DynamicFactorModel:
             monthly_cols, len(endog_m_is),
             quarterly_cols, len(endog_q_is),
         )
-
-        # ── 4. Build statsmodels model ─────────────────────────────────────
+        # 1. on crée sm_kwargs
         sm_kwargs: dict[str, Any] = dict(
             endog=endog_m_is,
             factors=self.n_factors,
             factor_orders=self.n_lags,
-            # Quarterly series are in original units (MDH) while monthly series
-            # are yoy log-diff + standardized.  Let statsmodels standardize
-            # all series internally to prevent scale mismatch in the EM.
             standardize=True,
-        )
+)
+
         if len(endog_q_is) > 0:
             sm_kwargs["endog_quarterly"] = endog_q_is
 
+
+# 2. 👉 ICI TU METS LE DEBUG
+        logger.info("Monthly in-sample std:\n%s", endog_m_is.std().to_string())
+
+        if len(endog_q_is) > 0:
+           logger.info("Quarterly in-sample std:\n%s", endog_q_is.std().to_string())
+           logger.info("Quarterly in-sample head:\n%s", endog_q_is.head(10).to_string())
+           logger.info("Quarterly in-sample tail:\n%s", endog_q_is.tail(10).to_string())
+
+
+# 3. ensuite seulement le modèle
         sm_model = DynamicFactorMQ(**sm_kwargs)
+       
+
 
         # ── 5. Fit via EM — capture convergence warnings ───────────────────
         with warnings.catch_warnings(record=True) as caught_warnings:
@@ -180,69 +190,6 @@ class DynamicFactorModel:
             {k: f"{v:.2%}" for k, v in self.results_.variance_shares.items()},
         )
         return self
-
-    def nowcast(self, panel: pd.DataFrame) -> pd.Series:
-        """Generate nowcast of VA CONSTRUCTION for all available quarters.
-
-        Applies the trained Kalman filter to the panel (which may contain NaN
-        for not-yet-released series) and returns the smoothed prediction for
-        VA CONSTRUCTION at each quarter-end date.
-
-        Args:
-            panel: Mixed-frequency panel as-of the nowcast date.  NaN allowed
-                   for indicators not yet published.
-
-        Returns:
-            Series of nowcast values indexed by quarter-end dates (QE freq).
-            Attributes 'ci_lower' and 'ci_upper' contain 90% CI bounds.
-
-        Raises:
-            RuntimeError: If called before fit().
-        """
-        if not self._is_fitted:
-            raise RuntimeError("Call fit() before nowcast().")
-
-        endog_m  = panel[self._monthly_cols] if self._monthly_cols else panel
-        endog_q  = self._prepare_quarterly(panel, self._quarterly_cols)
-
-        with warnings.catch_warnings(record=True) as caught_warnings:
-            warnings.simplefilter("always")
-            apply_kwargs: dict[str, Any] = {"endog": endog_m}
-            if len(endog_q) > 0:
-                apply_kwargs["endog_quarterly"] = endog_q
-            applied = self._sm_result.apply(**apply_kwargs)
-
-        for w in caught_warnings:
-            logger.warning("statsmodels apply: %s", str(w.message))
-
-        pred     = applied.get_prediction()
-        pred_m   = pred.predicted_mean
-        ci       = pred.conf_int(alpha=0.10)
-
-        va_col = "va_construction"
-        if va_col not in pred_m.columns:
-            raise ValueError(
-                f"'{va_col}' not in predicted columns: {pred_m.columns.tolist()}"
-            )
-
-        # Keep only quarter-end months (3, 6, 9, 12) for the target
-        all_va = pred_m[va_col]
-        q_mask = all_va.index.month.isin([3, 6, 9, 12])
-        va_pred  = all_va[q_mask].dropna()
-        ci_lower = ci[f"lower {va_col}"].reindex(va_pred.index)
-        ci_upper = ci[f"upper {va_col}"].reindex(va_pred.index)
-
-        result = va_pred.rename("nowcast")
-        result.attrs["ci_lower"] = ci_lower
-        result.attrs["ci_upper"] = ci_upper
-
-        logger.info(
-            "Nowcast: %d quarter-end predictions, latest=%s → %.2f",
-            len(result),
-            result.index[-1].strftime("%Y-Q%q") if len(result) else "—",
-            result.iloc[-1] if len(result) else float("nan"),
-        )
-        return result
 
     def news_decomposition(
         self,
@@ -286,24 +233,40 @@ class DynamicFactorModel:
     def _prepare_quarterly(
         panel: pd.DataFrame, quarterly_cols: list[str]
     ) -> pd.DataFrame:
-        """Extract quarterly obs and shift index to quarter-end for statsmodels.
+        """Prepare quarterly series for statsmodels DynamicFactorMQ.
 
-        statsmodels DynamicFactorMQ requires the quarterly DataFrame to have a
-        DatetimeIndex with quarterly frequency (freqstr starting with 'Q').
-        We shift the month-start index (e.g., 2015-03-01) to quarter-end
-        (2015-03-31) and set freq='QE'.
+        Keeps only true quarter-end observations (Mar, Jun, Sep, Dec),
+        shifts dates to calendar quarter-end if needed, and returns a
+        quarterly DataFrame.
         """
         if not quarterly_cols:
             return pd.DataFrame()
-        q_raw = panel[quarterly_cols].dropna(how="all")
-        if len(q_raw) == 0:
+
+        q_raw = panel[quarterly_cols].copy()
+
+        # Keep only rows where at least one quarterly series is observed
+        q_raw = q_raw.dropna(how="all")
+        if q_raw.empty:
             return q_raw
+
+        # Keep only quarter-end months: Mar, Jun, Sep, Dec
+        q_raw = q_raw[q_raw.index.month.isin([3, 6, 9, 12])]
+        if q_raw.empty:
+            return q_raw
+
         q = q_raw.copy()
-        # Shift month-start → quarter-end and set quarterly frequency
-        q.index = pd.DatetimeIndex(
-            q.index + pd.offsets.MonthEnd(0), freq="QE"
-        )
+
+        # Force exact calendar quarter-end dates
+        q.index = q.index.to_period("Q-DEC").to_timestamp("Q")
+
+        # Remove duplicate quarter-end rows if any
+        q = q[~q.index.duplicated(keep="last")]
+
+        # Sort and keep only rows with at least one observed value
+        q = q.sort_index().dropna(how="all")
+
         return q
+    
 
     def _extract_results(self, sm_result) -> DFMResults:
         """Populate DFMResults from a fitted statsmodels DynamicFactorMQ result."""
@@ -377,4 +340,161 @@ class DynamicFactorModel:
         return (
             f"DynamicFactorModel(n_factors={self.n_factors}, "
             f"n_lags={self.n_lags}, status={status})"
+        )   
+
+    def historical_nowcast(self, panel: pd.DataFrame) -> pd.Series:
+     """
+    Pseudo-nowcast historique sans fuite d'information.
+
+    Produit des nowcasts uniquement APRÈS la période d'estimation.
+    Pour chaque quarter-end t :
+      - on garde les données disponibles jusqu'à t
+      - on masque va_construction à t
+      - on applique le modèle déjà estimé
+      - on récupère la prédiction à t
+     """
+     if not self._is_fitted:
+        raise RuntimeError("Call fit() before historical_nowcast().")
+
+     panel = panel.copy()
+     panel = panel.replace([np.inf, -np.inf], np.nan)
+
+     va_col = "va_construction"
+     if va_col not in panel.columns:
+        raise ValueError("va_construction doit rester dans le panel pour le DFM.")
+
+     endog_m_full = panel[self._monthly_cols].copy() if self._monthly_cols else panel.copy()
+     endog_m_full = endog_m_full.drop(
+        columns=["va_construction", "va_construction_yoy"],
+        errors="ignore",
+    )
+     endog_m_full = endog_m_full.replace([np.inf, -np.inf], np.nan)
+     endog_m_full = endog_m_full.dropna(axis=1, how="all")
+
+     endog_q_full = self._prepare_quarterly(panel, self._quarterly_cols)
+     endog_q_full = endog_q_full.replace([np.inf, -np.inf], np.nan)
+
+     if len(endog_q_full) == 0 or va_col not in endog_q_full.columns:
+        raise ValueError(f"Quarterly target '{va_col}' not found in panel.")
+
+     quarter_idx = endog_q_full[va_col].dropna().index
+
+     # Ne produire des pseudo-nowcasts qu'après la période d'estimation
+     if self.settings and self.settings.sample and self.settings.sample.in_sample_end:
+        cutoff = (
+            pd.Timestamp(self.settings.sample.in_sample_end)
+            .to_period("Q-DEC")
+            .to_timestamp("Q")
         )
+        quarter_idx = quarter_idx[quarter_idx > cutoff]
+
+     preds: list[float] = []
+     ci_low: list[float] = []
+     ci_up: list[float] = []
+     valid_idx: list[pd.Timestamp] = []
+
+     for qdate in quarter_idx:
+        endog_m = endog_m_full.loc[:qdate].copy()
+        endog_q = endog_q_full.loc[:qdate].copy()
+
+        endog_m = endog_m.replace([np.inf, -np.inf], np.nan)
+        endog_m = endog_m.dropna(axis=1, how="all")
+        endog_m = endog_m.dropna(axis=0, how="any")
+
+        endog_q = endog_q.replace([np.inf, -np.inf], np.nan)
+
+        if endog_m.empty:
+            logger.warning("historical_nowcast skipped at %s: empty monthly data", qdate)
+            continue
+
+        # Masquer uniquement la cible au trimestre courant
+        if qdate in endog_q.index:
+            endog_q.loc[qdate, va_col] = np.nan
+
+        apply_kwargs: dict[str, Any] = {"endog": endog_m}
+        if len(endog_q) > 0:
+            apply_kwargs["endog_quarterly"] = endog_q
+
+        try:
+            applied = self._sm_result.apply(**apply_kwargs)
+            pred = applied.get_prediction()
+            pred_m = pred.predicted_mean
+            ci = pred.conf_int(alpha=0.10)
+
+            if qdate in pred_m.index and va_col in pred_m.columns:
+                preds.append(float(pred_m.loc[qdate, va_col]))
+
+                lower_col = f"lower {va_col}"
+                upper_col = f"upper {va_col}"
+
+                if lower_col in ci.columns and upper_col in ci.columns:
+                    ci_low.append(float(ci.loc[qdate, lower_col]))
+                    ci_up.append(float(ci.loc[qdate, upper_col]))
+                else:
+                    ci_low.append(np.nan)
+                    ci_up.append(np.nan)
+
+                valid_idx.append(qdate)
+
+        except Exception as exc:
+            logger.warning("historical_nowcast failed at %s: %s", qdate, exc)
+
+     result = pd.Series(
+        preds,
+        index=pd.DatetimeIndex(valid_idx),
+        name="historical_nowcast",
+    )
+
+     result.attrs["ci_lower"] = pd.Series(ci_low, index=result.index)
+     result.attrs["ci_upper"] = pd.Series(ci_up, index=result.index)
+
+     logger.info(
+        "historical_nowcast: generated %d pseudo-nowcasts after estimation window",
+        len(result),
+    )
+
+     return result
+
+    def nowcast_last(self, panel: pd.DataFrame) -> pd.Series:
+        """Nowcast du dernier trimestre uniquement."""
+        if not self._is_fitted:
+            raise RuntimeError("Call fit() before nowcast_last().")
+
+        va_col = "va_construction"
+
+        endog_m = panel[self._monthly_cols] if self._monthly_cols else panel
+        endog_q = self._prepare_quarterly(panel, self._quarterly_cols)
+
+        if len(endog_q) == 0 or va_col not in endog_q.columns:
+            raise ValueError(f"Quarterly target '{va_col}' not found.")
+
+        last_valid_idx = endog_q[va_col].dropna().index.max()
+        if pd.isna(last_valid_idx):
+            raise ValueError("No valid quarterly target observation found.")
+
+        endog_m = endog_m.loc[:last_valid_idx].copy()
+        endog_q = endog_q.loc[:last_valid_idx].copy()
+        endog_q.loc[last_valid_idx, va_col] = np.nan
+
+        apply_kwargs: dict[str, Any] = {"endog": endog_m}
+        if len(endog_q) > 0:
+            apply_kwargs["endog_quarterly"] = endog_q
+
+        applied = self._sm_result.apply(**apply_kwargs)
+        pred = applied.get_prediction()
+        pred_m = pred.predicted_mean
+        ci = pred.conf_int(alpha=0.10)
+
+        va_pred = pred_m[[va_col]].dropna()[va_col]
+        q_mask = va_pred.index.month.isin([3, 6, 9, 12])
+        va_pred = va_pred[q_mask]
+
+        ci_lower = ci[f"lower {va_col}"].reindex(va_pred.index)
+        ci_upper = ci[f"upper {va_col}"].reindex(va_pred.index)
+
+        result = va_pred.rename("nowcast_last")
+        result.attrs["ci_lower"] = ci_lower
+        result.attrs["ci_upper"] = ci_upper
+        print(">>> NOWCAST_LAST IS RUNNING <<<")
+        logger.warning(">>> NOWCAST_LAST IS RUNNING <<<")
+        return result

@@ -40,3 +40,18 @@ evaluation:
     - bias
     - theil_u
     - diebold_mariano
+dfm:
+  n_factors: 1
+  n_lags: 1
+  max_iterations: 500
+  tolerance: 1.0e-6
+  mixed_frequency:
+    quarterly_series:
+      - va_construction
+    aggregation: sum
+
+sample:
+  in_sample_start: "2010-01"
+  in_sample_end: "2019-12"
+  full_sample_start: "2007-01"
+  full_sample_end: "2026-02"

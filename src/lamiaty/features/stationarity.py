@@ -1,8 +1,14 @@
 """
 Unit root diagnostics — run before DFM estimation to verify stationarity.
 
-Wraps statsmodels ADF and KPSS tests and runs them across all series in the panel.
-Required before Phase 2 estimation: the DFM assumes covariance-stationary inputs.
+This module:
+1. Applies optional transformations to raw series
+   (level, diff, log, log_diff, pct_change)
+2. Runs ADF and KPSS tests
+3. Produces a stationarity summary for each series
+
+Useful before DFM estimation because the DFM assumes
+approximately covariance-stationary inputs.
 """
 
 from __future__ import annotations
@@ -11,32 +17,151 @@ import logging
 import warnings
 from typing import Any
 
+import numpy as np
 import pandas as pd
 from statsmodels.tsa.stattools import adfuller, kpss
 
 logger = logging.getLogger(__name__)
 
-# Significance level for test decisions
+# Significance level
 ALPHA = 0.05
 
+# -------------------------------------------------------------------
+# 1) CONFIGURATION
+# -------------------------------------------------------------------
 
-def run_adf_test(series: pd.Series, max_lags: int = 12) -> dict[str, Any]:
-    """Augmented Dickey-Fuller test for a unit root.
+# Series that usually exhibit deterministic trend in levels
+TREND_SERIES = {
+    "va_construction",
+    "credits_immobilier",
+    "credits_equipement",
+    "consommation_ciment",
+    "lafarge_index",
+    "investissement_etat",
+}
 
-    H0: Series has a unit root (non-stationary).
-    Reject H0 (p < alpha) → series is stationary.
+# Recommended default transformation by variable
+# Adjust names if your actual column names differ
+TRANSFORM_RULES = {
+    "va_construction": "log_diff",
+    "credits_immobilier": "log_diff",
+    "credits_equipement": "log_diff",
+    "consommation_ciment": "log_diff",
+    "lafarge_index": "diff",
+    "ipai": "diff",
+    "creation_emploi": "diff",
+    "investissement_etat": "diff",
+}
 
-    Args:
-        series: Numeric series. NaNs are dropped before testing.
-        max_lags: Maximum number of lags to consider (autolag='AIC' selects optimally).
+# Minimum sample size warning threshold
+MIN_OBS_WARNING = 20
 
-    Returns:
-        Dict with keys: statistic, pvalue, n_lags_used, critical_values, is_stationary.
+
+# -------------------------------------------------------------------
+# 2) HELPER: PREPARE SERIES
+# -------------------------------------------------------------------
+
+def _coerce_numeric(series: pd.Series) -> pd.Series:
+    """Ensure numeric dtype and preserve series name."""
+    out = pd.to_numeric(series, errors="coerce")
+    out.name = series.name
+    return out
+
+
+def _safe_log(series: pd.Series) -> pd.Series:
     """
-    clean = series.dropna()
-    if len(clean) < 20:
-        logger.warning("ADF test on '%s': only %d non-NaN values — result unreliable", series.name, len(clean))
-    result = adfuller(clean, maxlag=max_lags, autolag="AIC")
+    Safe log transform.
+    Replaces non-positive values with NaN before taking logs.
+    """
+    s = _coerce_numeric(series).copy()
+    s[s <= 0] = np.nan
+    out = np.log(s)
+    out.name = series.name
+    return out
+
+
+def make_stationary_transform(series: pd.Series, method: str = "level") -> pd.Series:
+    """
+    Apply a transformation intended to improve stationarity.
+
+    Supported methods:
+      - level
+      - diff
+      - log
+      - log_diff
+      - pct_change
+    """
+    s = _coerce_numeric(series).copy()
+
+    if method == "level":
+        out = s
+
+    elif method == "diff":
+        out = s.diff()
+
+    elif method == "log":
+        out = _safe_log(s)
+
+    elif method == "log_diff":
+        out = _safe_log(s).diff()
+
+    elif method == "pct_change":
+        out = s.pct_change()
+
+    else:
+        raise ValueError(f"Unknown transformation method: {method}")
+
+    out.name = series.name
+    return out
+
+
+def infer_regression_type(series_name: str, method: str = "level") -> str:
+    """
+    Choose deterministic component for ADF/KPSS.
+    'ct' = constant + trend
+    'c'  = constant only
+
+    If we have already differenced the series, we usually only need a constant.
+    """
+    if method in ["diff", "log_diff", "pct_change"]:
+        return "c"
+    return "ct" if series_name in TREND_SERIES else "c"
+
+
+# -------------------------------------------------------------------
+# 3) ADF / KPSS TESTS
+# -------------------------------------------------------------------
+
+def run_adf_test(
+    series: pd.Series,
+    max_lags: int = 6,
+    regression: str = "c",
+) -> dict[str, Any]:
+    """
+    Augmented Dickey-Fuller test.
+
+    H0: Series has a unit root (non-stationary)
+    Reject H0 (p < alpha) => stationary
+    """
+    clean = _coerce_numeric(series).dropna()
+
+    if len(clean) < MIN_OBS_WARNING:
+        logger.warning(
+            "ADF test on '%s': only %d non-NaN values — result may be unreliable",
+            series.name,
+            len(clean),
+        )
+
+    if len(clean) < 10:
+        raise ValueError(f"ADF test requires more observations for series '{series.name}'")
+
+    result = adfuller(
+        clean,
+        maxlag=max_lags,
+        autolag="AIC",
+        regression=regression,
+    )
+
     return {
         "statistic": result[0],
         "pvalue": result[1],
@@ -47,86 +172,238 @@ def run_adf_test(series: pd.Series, max_lags: int = 12) -> dict[str, Any]:
     }
 
 
-def run_kpss_test(series: pd.Series) -> dict[str, Any]:
-    """KPSS test for stationarity.
-
-    H0: Series is stationary (level or trend).
-    Reject H0 (p < alpha) → series has a unit root.
-
-    Note: KPSS has the opposite null hypothesis from ADF. Use both together:
-      ADF: fail to reject + KPSS: fail to reject → stationary (agreed)
-      ADF: reject + KPSS: fail to reject → stationary (agreed)
-      ADF: fail to reject + KPSS: reject → unit root (agreed)
-      ADF: reject + KPSS: reject → ambiguous (possible structural break or regime change)
-
-    Args:
-        series: Numeric series. NaNs are dropped before testing.
-
-    Returns:
-        Dict with keys: statistic, pvalue, n_lags_used, critical_values, is_stationary.
+def run_kpss_test(
+    series: pd.Series,
+    regression: str = "c",
+) -> dict[str, Any]:
     """
-    clean = series.dropna()
-    if len(clean) < 20:
-        logger.warning("KPSS test on '%s': only %d non-NaN values — result unreliable", series.name, len(clean))
+    KPSS test.
+
+    H0: Series is stationary
+    Reject H0 (p < alpha) => non-stationary
+    """
+    clean = _coerce_numeric(series).dropna()
+
+    if len(clean) < MIN_OBS_WARNING:
+        logger.warning(
+            "KPSS test on '%s': only %d non-NaN values — result may be unreliable",
+            series.name,
+            len(clean),
+        )
+
+    if len(clean) < 10:
+        raise ValueError(f"KPSS test requires more observations for series '{series.name}'")
+
     with warnings.catch_warnings():
-        warnings.simplefilter("ignore")  # suppress lags truncation warning
-        result = kpss(clean, regression="c", nlags="auto")
+        warnings.simplefilter("ignore")
+        result = kpss(clean, regression=regression, nlags="auto")
+
     return {
         "statistic": result[0],
         "pvalue": result[1],
         "n_lags_used": result[2],
         "critical_values": result[3],
-        "is_stationary": result[1] > ALPHA,  # fail to reject H0 → stationary
+        "is_stationary": result[1] > ALPHA,  # fail to reject H0
     }
 
 
-def run_stationarity_battery(panel: pd.DataFrame) -> pd.DataFrame:
-    """Run ADF and KPSS tests on every column of the panel.
+# -------------------------------------------------------------------
+# 4) VERDICT LOGIC
+# -------------------------------------------------------------------
 
-    Args:
-        panel: Mixed-frequency panel (output of build_mixed_frequency_panel).
-
-    Returns:
-        DataFrame with one row per series and columns:
-          series, n_obs, ADF_stat, ADF_pvalue, ADF_stationary,
-          KPSS_stat, KPSS_pvalue, KPSS_stationary, verdict
+def combine_adf_kpss_verdict(adf_stationary: bool, kpss_stationary: bool) -> str:
     """
-    rows = []
+    Combine ADF and KPSS conclusions into a final verdict.
+    """
+    if adf_stationary and kpss_stationary:
+        return "STATIONARY"
+
+    if (not adf_stationary) and (not kpss_stationary):
+        return "UNIT_ROOT"
+
+    if adf_stationary and (not kpss_stationary):
+        return "AMBIGUOUS (ADF stationary, KPSS non-stationary)"
+
+    return "AMBIGUOUS (ADF non-stationary, KPSS stationary)"
+
+
+# -------------------------------------------------------------------
+# 5) MAIN BATTERY
+# -------------------------------------------------------------------
+
+def run_stationarity_battery(
+    panel: pd.DataFrame,
+    transform_rules: dict[str, str] | None = None,
+    max_lags_adf: int = 6,
+) -> pd.DataFrame:
+    """
+    Run ADF + KPSS on each column of a DataFrame.
+
+    Parameters
+    ----------
+    panel : pd.DataFrame
+        Input panel containing raw series.
+    transform_rules : dict[str, str] | None
+        Mapping column -> transformation method.
+        If None, uses TRANSFORM_RULES and defaults to 'level'.
+    max_lags_adf : int
+        Maximum lag length passed to ADF.
+
+    Returns
+    -------
+    pd.DataFrame
+        Summary table with one row per series.
+    """
+    if transform_rules is None:
+        transform_rules = TRANSFORM_RULES.copy()
+
+    rows: list[dict[str, Any]] = []
+
     for col in panel.columns:
-        series = panel[col].dropna()
-        n_obs = len(series)
+        raw_series = panel[col]
+        method = transform_rules.get(col, "level")
+        regression_type = infer_regression_type(col)
 
-        adf = run_adf_test(series)
-        kpss_res = run_kpss_test(series)
+        try:
+            transformed = make_stationary_transform(raw_series, method).dropna()
+            n_obs = len(transformed)
 
-        # Determine consensus verdict
-        if adf["is_stationary"] and kpss_res["is_stationary"]:
-            verdict = "STATIONARY"
-        elif not adf["is_stationary"] and not kpss_res["is_stationary"]:
-            verdict = "UNIT_ROOT"
-        elif adf["is_stationary"] and not kpss_res["is_stationary"]:
-            verdict = "AMBIGUOUS (ADF: stationary, KPSS: unit root)"
-        else:
-            verdict = "AMBIGUOUS (ADF: unit root, KPSS: stationary)"
+            adf_res = run_adf_test(
+                transformed,
+                max_lags=max_lags_adf,
+                regression=regression_type,
+            )
 
-        rows.append({
-            "series": col,
-            "n_obs": n_obs,
-            "ADF_stat": round(adf["statistic"], 4),
-            "ADF_pvalue": round(adf["pvalue"], 4),
-            "ADF_stationary": adf["is_stationary"],
-            "KPSS_stat": round(kpss_res["statistic"], 4),
-            "KPSS_pvalue": round(kpss_res["pvalue"], 4),
-            "KPSS_stationary": kpss_res["is_stationary"],
-            "verdict": verdict,
-        })
-        logger.debug("Stationarity: '%s' → %s", col, verdict)
+            kpss_res = run_kpss_test(
+                transformed,
+                regression=regression_type,
+            )
+
+            verdict = combine_adf_kpss_verdict(
+                adf_stationary=adf_res["is_stationary"],
+                kpss_stationary=kpss_res["is_stationary"],
+            )
+
+            rows.append({
+                "series": col,
+                "transformation": method,
+                "regression": regression_type,
+                "n_obs": n_obs,
+                "ADF_stat": round(adf_res["statistic"], 4),
+                "ADF_pvalue": round(adf_res["pvalue"], 4),
+                "ADF_stationary": adf_res["is_stationary"],
+                "KPSS_stat": round(kpss_res["statistic"], 4),
+                "KPSS_pvalue": round(kpss_res["pvalue"], 4),
+                "KPSS_stationary": kpss_res["is_stationary"],
+                "verdict": verdict,
+            })
+
+            logger.info(
+                "Series '%s' | transform=%s | regression=%s | verdict=%s",
+                col, method, regression_type, verdict
+            )
+
+        except Exception as exc:
+            logger.exception("Stationarity test failed for '%s': %s", col, exc)
+            rows.append({
+                "series": col,
+                "transformation": method,
+                "regression": regression_type,
+                "n_obs": np.nan,
+                "ADF_stat": np.nan,
+                "ADF_pvalue": np.nan,
+                "ADF_stationary": np.nan,
+                "KPSS_stat": np.nan,
+                "KPSS_pvalue": np.nan,
+                "KPSS_stationary": np.nan,
+                "verdict": f"ERROR: {exc}",
+            })
 
     result = pd.DataFrame(rows).set_index("series")
+
     n_stationary = (result["verdict"] == "STATIONARY").sum()
     logger.info(
-        "Stationarity battery: %d/%d series are stationary",
+        "Stationarity battery completed: %d/%d series classified as STATIONARY",
         n_stationary,
         len(result),
     )
+
     return result
+
+
+# -------------------------------------------------------------------
+# 6) OPTIONAL: COMPARE MULTIPLE TRANSFORMATIONS FOR ONE SERIES
+# -------------------------------------------------------------------
+
+def compare_transformations_for_series(
+    series: pd.Series,
+    methods: list[str] | None = None,
+    max_lags_adf: int = 6,
+) -> pd.DataFrame:
+    """
+    Useful to decide which transformation works best for one variable.
+    """
+    if methods is None:
+        methods = ["level", "diff", "log", "log_diff", "pct_change"]
+
+    rows = []
+    regression_type = infer_regression_type(series.name or "")
+
+    for method in methods:
+        try:
+            transformed = make_stationary_transform(series, method).dropna()
+
+            adf_res = run_adf_test(
+                transformed,
+                max_lags=max_lags_adf,
+                regression=regression_type,
+            )
+            kpss_res = run_kpss_test(
+                transformed,
+                regression=regression_type,
+            )
+
+            verdict = combine_adf_kpss_verdict(
+                adf_stationary=adf_res["is_stationary"],
+                kpss_stationary=kpss_res["is_stationary"],
+            )
+
+            rows.append({
+                "method": method,
+                "n_obs": len(transformed),
+                "ADF_pvalue": round(adf_res["pvalue"], 4),
+                "KPSS_pvalue": round(kpss_res["pvalue"], 4),
+                "verdict": verdict,
+            })
+
+        except Exception as exc:
+            rows.append({
+                "method": method,
+                "n_obs": np.nan,
+                "ADF_pvalue": np.nan,
+                "KPSS_pvalue": np.nan,
+                "verdict": f"ERROR: {exc}",
+            })
+
+    return pd.DataFrame(rows)
+
+
+# -------------------------------------------------------------------
+# 7) OPTIONAL: QUICK PRESET FOR YOUR BTP PROJECT
+# -------------------------------------------------------------------
+
+def get_btp_transform_rules() -> dict[str, str]:
+    """
+    Convenient helper for your BTP nowcasting project.
+    Adjust column names if needed.
+    """
+    return {
+        "va_construction": "log_diff",
+        "credits_immobilier": "log_diff",
+        "credits_equipement": "log_diff",
+        "consommation_ciment": "log_diff",
+        "lafarge_index": "diff",
+        "ipai": "diff",
+        "creation_emploi": "diff",
+        "investissement_etat": "diff",
+    }

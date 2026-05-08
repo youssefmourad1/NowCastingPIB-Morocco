@@ -114,6 +114,7 @@ PAGES = {
     "🔮 Nowcast": "nowcast",
     "📉 Backtesting": "backtest",
     "📰 News decomposition": "news",
+    "🤖 Modèles ML": "ml_models",
 }
 
 with st.sidebar:
@@ -387,6 +388,68 @@ def page_cement():
                           template=PLOTLY_TEMPLATE, hovermode="x unified")
         st.plotly_chart(fig, use_container_width=True)
 
+        # ── Split view: before vs after break ─────────────────────────────
+        st.caption("📊 Détail par période — échelles indépendantes pour voir la distribution réelle de chaque segment")
+        pre_series  = cement_raw[cement_raw.index <  break_ts]
+        post_series = cement_raw[cement_raw.index >= break_ts]
+
+        fig_split = make_subplots(
+            rows=1, cols=2,
+            subplot_titles=[
+                f"Avant rupture (jusqu'à {cb.break_date})",
+                f"Après rupture ({cb.break_date} → aujourd'hui)",
+            ],
+            horizontal_spacing=0.08,
+        )
+        fig_split.add_trace(
+            go.Scatter(
+                x=pre_series.index, y=pre_series.values,
+                mode="lines", name="Avant rupture",
+                line=dict(color=C_ORANGE, width=1.5),
+                hovertemplate="%{x|%b %Y}: %{y:,.0f}<extra></extra>",
+            ),
+            row=1, col=1,
+        )
+        fig_split.add_trace(
+            go.Scatter(
+                x=post_series.index, y=post_series.values,
+                mode="lines", name="Après rupture",
+                line=dict(color=C_RED, width=1.5),
+                hovertemplate="%{x|%b %Y}: %{y:,.0f}<extra></extra>",
+            ),
+            row=1, col=2,
+        )
+        # Annotations: mean lines
+        if len(pre_series):
+            fig_split.add_hline(
+                y=pre_series.mean(), line_dash="dot", line_color=C_GREY,
+                annotation_text=f"Moy. {pre_series.mean():,.0f}",
+                annotation_position="top right",
+                row=1, col=1,
+            )
+        if len(post_series):
+            fig_split.add_hline(
+                y=post_series.mean(), line_dash="dot", line_color=C_GREY,
+                annotation_text=f"Moy. {post_series.mean():,.0f}",
+                annotation_position="top right",
+                row=1, col=2,
+            )
+        fig_split.update_yaxes(title_text="Unité brute", row=1, col=1)
+        fig_split.update_yaxes(title_text="Unité brute", row=1, col=2)
+        fig_split.update_layout(
+            template=PLOTLY_TEMPLATE,
+            hovermode="x unified",
+            showlegend=False,
+            height=350,
+        )
+        st.plotly_chart(fig_split, use_container_width=True)
+
+        if len(pre_series) and len(post_series):
+            col1, col2, col3 = st.columns(3)
+            col1.metric("Moyenne avant rupture",  f"{pre_series.mean():,.0f}")
+            col2.metric("Moyenne après rupture",  f"{post_series.mean():,.0f}")
+            col3.metric("Ratio (après / avant)",  f"×{post_series.mean() / pre_series.mean():,.0f}")
+
     with tab_corr:
         fig = go.Figure()
         fig.add_trace(go.Scatter(
@@ -629,7 +692,9 @@ def page_stationarity():
     with st.spinner("Calcul des tests de racine unitaire..."):
         panel = get_panel()
         from lamiaty.features.stationarity import run_stationarity_battery
-        battery = run_stationarity_battery(panel.dropna(thresh=30, axis=1))
+        # On passe un dict vide pour éviter de ré-appliquer des transformations 
+        # (log_diff, etc.) sur un panel déjà transformé et standardisé.
+        battery = run_stationarity_battery(panel.dropna(thresh=30, axis=1), transform_rules={})
 
 
     c1, c2, c3 = st.columns(3)
@@ -803,7 +868,7 @@ def page_nowcast():
     dfm   = get_dfm()
     panel = get_panel()
 
-    nc = dfm.nowcast(panel)
+    nc = dfm.historical_nowcast(panel)
     if len(nc) == 0:
         st.error("Aucune prédiction disponible.")
         return
@@ -887,6 +952,8 @@ def page_nowcast():
     st.dataframe(nc_df, hide_index=True, use_container_width=True)
 
     st.info("ℹ️ Le nowcast est basé sur un DFM estimé sur la période 2010–2019 (pré-COVID). "
+            "La VA Construction est masquée lors de la prédiction — le modèle l'infère "
+            "uniquement à partir des facteurs latents et des indicateurs mensuels (pas de fuite in-sample). "
             "Phase 2 complète. Phase 3 (backtesting) disponible dans l'onglet suivant.")
 
 
@@ -1108,6 +1175,7 @@ def page_news():
 
 
 # ── Router ────────────────────────────────────────────────────────────────────
+from ml_models_page import page_ml_models
 
 _ROUTERS = {
     "home":         page_home,
@@ -1120,6 +1188,7 @@ _ROUTERS = {
     "nowcast":      page_nowcast,
     "backtest":     page_backtest,
     "news":         page_news,
+    "ml_models":    page_ml_models,
 }
 
 _ROUTERS[page]()
