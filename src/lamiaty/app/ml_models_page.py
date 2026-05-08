@@ -317,8 +317,8 @@ def train_elastic_net(X_train, X_test, y_train, y_test, feature_names):
         
         return {
             "model": model,
-            "y_pred": y_pred,
-            "y_train_pred": y_train_pred,
+            "pred_test": y_pred,
+            "pred_train": y_train_pred,
             "test_metrics": {
                 "RMSE": rmse(y_test, y_pred),
                 "MAPE": mape(y_test, y_pred),
@@ -705,12 +705,12 @@ def page_ml_models() -> None:
             col1.metric("RMSE", f"{m['RMSE']:{f_val}} {u}")
             col2.metric("MAPE (%)", f"{m['MAPE']:.1f} %")
             col3.metric("MAE", f"{m['MAE']:{f_val}} {u}")
-            col4.metric("R²", f"{m['R2']:.3f}")
+            col4.metric("R²", f"{m['R²']:.3f}")
 
             # Plot prediction
             fig = go.Figure()
             fig.add_trace(go.Scatter(x=dates_test, y=y_test, mode="markers+lines", name="Réalisé", line=dict(color=C_GREEN)))
-            fig.add_trace(go.Scatter(x=dates_test, y=en_res["y_pred"], mode="lines", name="EN — Test", line=dict(color=C_BLUE, dash="dot")))
+            fig.add_trace(go.Scatter(x=dates_test, y=en_res["pred_test"], mode="lines", name="EN — Test", line=dict(color=C_BLUE, dash="dot")))
             fig.update_layout(title="Elastic Net — Prédictions", template=PLOTLY_TEMPLATE)
             st.plotly_chart(fig, use_container_width=True)
 
@@ -993,8 +993,8 @@ def page_ml_models() -> None:
         preds: dict[str, np.ndarray] = {}
         dates_ref = dates_test
 
-        if "y_pred" in en_res and "error" not in en_res:
-            preds["Elastic Net"] = en_res["y_pred"]
+        if "pred_test" in en_res and "error" not in en_res:
+            preds["Elastic Net"] = en_res["pred_test"]
 
         if "pred_test" in rf_res and "error" not in rf_res:
             preds["Random Forest"] = rf_res["pred_test"]
@@ -1255,7 +1255,7 @@ def page_ml_models() -> None:
                 ("ARMA", arma_res),
                 ("SARIMA", sarima_res)
             ]
-            if ("pred_test" in res or "y_pred" in res) and "error" not in res
+            if "pred_test" in res and "error" not in res
         }
         if not models_for_diag:
             st.info("Aucun modèle disponible pour le diagnostic.")
